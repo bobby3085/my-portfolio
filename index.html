@@ -7,31 +7,64 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f8f9fa; }
-        .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
         header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 0; text-align: center; margin-bottom: 40px; border-radius: 10px; }
-        h1 { font-size: 2.5em; margin-bottom: 10px; }
-        .subtitle { font-size: 1.2em; opacity: 0.9; }
+        .profile-section { display: flex; align-items: center; justify-content: center; gap: 30px; margin-bottom: 20px; }
+        .profile-image { width: 120px; height: 120px; border-radius: 50%; border: 4px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 48px; color: rgba(255,255,255,0.7); }
+        .profile-info h1 { font-size: 2.5em; margin-bottom: 10px; text-align: left; }
+        .profile-info .subtitle { font-size: 1.2em; opacity: 0.9; text-align: left; }
         .section { background: white; margin: 20px 0; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .project { border-left: 4px solid #667eea; padding: 20px; margin: 15px 0; background: #f8f9ff; border-radius: 5px; }
-        .project h3 { color: #667eea; margin-bottom: 10px; }
-        .status { display: inline-block; padding: 5px 15px; border-radius: 20px; font-size: 0.9em; font-weight: bold; }
+        .projects-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 25px; margin-bottom: 30px; }
+        .project { border-left: 4px solid #667eea; padding: 18px; background: #f8f9ff; border-radius: 5px; height: fit-content; }
+        .project-next { border-left: 4px solid #ffc107; background: #fff8e1; }
+        .project h3 { color: #667eea; margin-bottom: 8px; font-size: 1.1em; }
+        .project-next h3 { color: #f57c00; }
+        .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+        .status { display: inline-block; padding: 4px 12px; border-radius: 15px; font-size: 0.8em; font-weight: bold; }
         .completed { background: #d4edda; color: #155724; }
         .in-progress { background: #fff3cd; color: #856404; }
-        .skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-        .skill { background: #e9ecef; padding: 5px 12px; border-radius: 15px; font-size: 0.9em; }
+        .github-btn { background: #24292e; color: white; padding: 6px 12px; border-radius: 5px; text-decoration: none; font-size: 0.8em; display: inline-flex; align-items: center; gap: 6px; }
+        .github-btn:hover { background: #1a1e22; }
+        .project p { font-size: 0.9em; margin-bottom: 12px; }
+        .skills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+        .skill { background: #e9ecef; padding: 3px 8px; border-radius: 10px; font-size: 0.75em; }
         .highlight { background: #667eea; color: white; }
-        footer { text-align: center; margin-top: 40px; color: #666; }
-        .achievement { background: #e8f5e8; border-left: 4px solid #28a745; padding: 15px; margin: 10px 0; border-radius: 5px; }
-        .feature-list { list-style: none; padding: 0; }
-        .feature-list li { padding: 5px 0; }
-        .feature-list li:before { content: "✅ "; color: #28a745; font-weight: bold; }
+        .achievement { background: #e8f5e8; border-left: 3px solid #28a745; padding: 12px; margin: 8px 0; border-radius: 4px; }
+        .achievement h4 { font-size: 0.9em; margin-bottom: 6px; }
+        .steps-list { list-style: none; padding: 0; margin: 0; }
+        .steps-list li { padding: 2px 0; font-size: 0.8em; }
+        .steps-list li:before { content: "🔧 "; color: #667eea; }
+        .compact-infra { background: #f0f8ff; border-left: 3px solid #2196f3; padding: 15px; border-radius: 5px; }
+        .compact-infra h3 { color: #1976d2; margin-bottom: 8px; font-size: 1.1em; }
+        .infra-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .infra-item { font-size: 0.85em; }
+        .infra-item:before { content: "⚡ "; color: #2196f3; }
+        footer { text-align: center; margin-top: 30px; color: #666; font-size: 0.9em; }
+        @media (max-width: 1024px) {
+            .projects-grid { grid-template-columns: 1fr 1fr; }
+            .project-next { grid-column: 1 / -1; }
+        }
+        @media (max-width: 768px) {
+            .profile-section { flex-direction: column; gap: 20px; }
+            .profile-info h1, .profile-info .subtitle { text-align: center; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .infra-grid { grid-template-columns: 1fr; }
+            .project-header { flex-direction: column; align-items: flex-start; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Venkat</h1>
-            <p class="subtitle">DevOps Engineer | Container Orchestration | Cloud Infrastructure | Site Reliability</p>
+            <div class="profile-section">
+                <div class="profile-image">
+                    👨‍💻
+                </div>
+                <div class="profile-info">
+                    <h1>Venkat</h1>
+                    <p class="subtitle">DevOps Engineer | Container Orchestration | Cloud Infrastructure | Site Reliability</p>
+                </div>
+            </div>
         </header>
 
         <div class="section">
@@ -40,63 +73,117 @@
         </div>
 
         <div class="section">
-            <h2>Projects</h2>
+            <h2>DevOps Projects</h2>
             
-            <div class="project">
-                <h3>Project 1: Infrastructure as Code Foundation</h3>
-                <span class="status completed">✅ COMPLETED</span>
-                <p>Built complete AWS infrastructure using Terraform with 23 resources including VPC, EC2, S3, IAM, and monitoring. Implemented remote state management and cost optimization.</p>
-                <div class="skills">
-                    <span class="skill">Terraform</span>
-                    <span class="skill">AWS VPC</span>
-                    <span class="skill">Security Groups</span>
-                    <span class="skill">IAM</span>
-                    <span class="skill">S3</span>
-                    <span class="skill">Cost Management</span>
-                </div>
-            </div>
+            <div class="projects-grid">
+                <div class="project">
+                    <div class="project-header">
+                        <div>
+                            <h3>Project 1: Infrastructure as Code</h3>
+                            <span class="status completed">✅ COMPLETED</span>
+                        </div>
+                        <a href="https://github.com/venkat3085/proj-1-terraform" target="_blank" class="github-btn">
+                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            Code
+                        </a>
+                    </div>
+                    <p>Built complete AWS infrastructure using Terraform with 23 resources including VPC, EC2, S3, IAM, and monitoring.</p>
+                    
+                    <div class="achievement">
+                        <h4>Infrastructure Deployed:</h4>
+                        <ul class="steps-list">
+                            <li>VPC with public/private subnets</li>
+                            <li>Security groups & route tables</li>
+                            <li>EC2 instance with ML tools</li>
+                            <li>S3 buckets for data & state</li>
+                            <li>IAM roles and policies</li>
+                            <li>CloudWatch monitoring</li>
+                            <li>Cost management & alerts</li>
+                            <li>Remote state with DynamoDB</li>
+                        </ul>
+                    </div>
 
-            <div class="project">
-                <h3>Project 2: Container Orchestration & Kubernetes</h3>
-                <span class="status completed">✅ COMPLETED</span>
-                <p>Containerized portfolio application with Docker and deployed to Kubernetes with production-ready features including autoscaling, load balancing, and resource management.</p>
-                
-                <div class="achievement">
-                    <h4>Production Features Implemented:</h4>
-                    <ul class="feature-list">
-                        <li>High Availability (2 replica pods with automatic failover)</li>
-                        <li>Auto Scaling (2-10 pods based on CPU usage)</li>
-                        <li>Load Balancing (traffic distribution across pods)</li>
-                        <li>Resource Management (CPU/memory limits and requests)</li>
-                        <li>Real-time Monitoring (metrics-server integration)</li>
-                        <li>Multiple Access Methods (NodePort, port-forward, ingress)</li>
-                    </ul>
+                    <div class="skills">
+                        <span class="skill highlight">Terraform</span>
+                        <span class="skill">AWS VPC</span>
+                        <span class="skill">Security Groups</span>
+                        <span class="skill">IAM</span>
+                        <span class="skill">S3</span>
+                        <span class="skill">CloudWatch</span>
+                    </div>
                 </div>
 
-                <div class="skills">
-                    <span class="skill highlight">Docker</span>
-                    <span class="skill highlight">Kubernetes</span>
-                    <span class="skill highlight">kubectl</span>
-                    <span class="skill highlight">Helm</span>
-                    <span class="skill">Container Orchestration</span>
-                    <span class="skill">Pod Autoscaling</span>
-                    <span class="skill">Service Networking</span>
-                    <span class="skill">Ingress Controllers</span>
-                    <span class="skill">Resource Quotas</span>
-                    <span class="skill">Security Contexts</span>
-                    <span class="skill">Metrics & Monitoring</span>
-                </div>
-            </div>
+                <div class="project">
+                    <div class="project-header">
+                        <div>
+                            <h3>Project 2: Container Orchestration</h3>
+                            <span class="status completed">✅ COMPLETED</span>
+                        </div>
+                        <a href="https://github.com/venkat3085/proj-2-containers" target="_blank" class="github-btn">
+                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                            </svg>
+                            Code
+                        </a>
+                    </div>
+                    <p>Containerized portfolio with Docker and deployed to Kubernetes with production-ready features.</p>
+                    
+                    <div class="achievement">
+                        <h4>Production Features:</h4>
+                        <ul class="steps-list">
+                            <li>Docker containerization</li>
+                            <li>Kubernetes deployment (2 replicas)</li>
+                            <li>Auto-scaling (2-10 pods)</li>
+                            <li>Load balancing across pods</li>
+                            <li>Resource limits (CPU/memory)</li>
+                            <li>Real-time monitoring</li>
+                            <li>Multiple access methods</li>
+                            <li>Helm chart configuration</li>
+                        </ul>
+                    </div>
 
-            <div class="project">
-                <h3>Project 3: CI/CD & GitOps Pipeline</h3>
-                <span class="status in-progress">🚧 NEXT</span>
-                <p>Implementing automated CI/CD pipelines with GitHub Actions and GitOps deployment with ArgoCD for continuous integration and delivery.</p>
-                <div class="skills">
-                    <span class="skill">GitHub Actions</span>
-                    <span class="skill">ArgoCD</span>
-                    <span class="skill">GitOps</span>
-                    <span class="skill">Automated Testing</span>
+                    <div class="skills">
+                        <span class="skill highlight">Docker</span>
+                        <span class="skill highlight">Kubernetes</span>
+                        <span class="skill">kubectl</span>
+                        <span class="skill">Helm</span>
+                        <span class="skill">Autoscaling</span>
+                        <span class="skill">Monitoring</span>
+                    </div>
+                </div>
+
+                <div class="project project-next">
+                    <div class="project-header">
+                        <div>
+                            <h3>Project 3: CI/CD & GitOps</h3>
+                            <span class="status in-progress">🚧 NEXT</span>
+                        </div>
+                    </div>
+                    <p>Implementing automated CI/CD pipelines with GitHub Actions and GitOps deployment with ArgoCD.</p>
+                    
+                    <div class="achievement">
+                        <h4>Planned Features:</h4>
+                        <ul class="steps-list">
+                            <li>GitHub Actions workflows</li>
+                            <li>Automated testing pipeline</li>
+                            <li>Security scanning (SAST/DAST)</li>
+                            <li>ArgoCD GitOps deployment</li>
+                            <li>Blue-green deployments</li>
+                            <li>Canary releases</li>
+                            <li>Automated rollbacks</li>
+                            <li>Multi-environment support</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skills">
+                        <span class="skill">GitHub Actions</span>
+                        <span class="skill">ArgoCD</span>
+                        <span class="skill">GitOps</span>
+                        <span class="skill">Testing</span>
+                        <span class="skill">Security</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -126,26 +213,22 @@
         </div>
 
         <div class="section">
-            <h2>Current Infrastructure</h2>
-            <div class="achievement">
-                <h4>This Portfolio is Running On:</h4>
-                <ul class="feature-list">
-                    <li>Containerized with Docker (Nginx + HTML)</li>
-                    <li>Orchestrated with Kubernetes (2 replica pods)</li>
-                    <li>Auto-scaling enabled (2-10 pods, 50% CPU threshold)</li>
-                    <li>Load balanced across multiple pods</li>
-                    <li>Resource limits: 100m CPU, 128Mi memory per pod</li>
-                    <li>Real-time monitoring with metrics-server</li>
-                    <li>Production-ready deployment patterns</li>
-                </ul>
+            <div class="compact-infra">
+                <h3>🚀 Live Infrastructure</h3>
+                <div class="infra-grid">
+                    <div class="infra-item">Containerized with Docker</div>
+                    <div class="infra-item">Kubernetes orchestration (2 pods)</div>
+                    <div class="infra-item">Auto-scaling (2-10 pods)</div>
+                    <div class="infra-item">Load balanced & highly available</div>
+                    <div class="infra-item">Resource limits: 100m CPU, 128Mi RAM</div>
+                    <div class="infra-item">Real-time monitoring enabled</div>
+                </div>
             </div>
         </div>
 
         <footer>
-            <p>🐳 This website is containerized with Docker and orchestrated with Kubernetes</p>
-            <p>📊 Currently running 2 pods with auto-scaling (2-10 pods based on CPU usage)</p>
-            <p>⚡ Load balanced and highly available with automatic failover</p>
-            <p>Last updated: December 2025</p>
+            <p>🐳 Containerized with Docker • 📊 Orchestrated with Kubernetes • ⚡ Auto-scaling enabled</p>
+            <p>💻 Source code: <a href="https://github.com/venkat3085" target="_blank" style="color: #667eea;">GitHub</a> • Last updated: December 2025</p>
         </footer>
     </div>
 </body>
