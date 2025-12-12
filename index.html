@@ -7,12 +7,34 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f8f9fa; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        
+        .layout { display: flex; min-height: 100vh; }
+        
+        .sidebar { width: 280px; background: linear-gradient(180deg, #2c3e50 0%, #34495e 100%); color: white; padding: 20px; position: fixed; height: 100vh; overflow-y: auto; box-shadow: 2px 0 10px rgba(0,0,0,0.1); }
+        .sidebar h3 { margin-bottom: 20px; font-size: 1.2em; color: #ecf0f1; }
+        
+        .nav-section { margin-bottom: 30px; }
+        .nav-section h4 { color: #bdc3c7; font-size: 0.9em; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        .nav-link { display: block; padding: 10px 15px; margin: 5px 0; color: #ecf0f1; text-decoration: none; border-radius: 5px; transition: all 0.3s; font-size: 0.9em; }
+        .nav-link:hover { background: rgba(255,255,255,0.1); transform: translateX(5px); }
+        .nav-link.external { color: #3498db; }
+        .nav-link.external:hover { color: #2980b9; }
+        
+        .status-indicator { display: flex; align-items: center; gap: 8px; padding: 8px 15px; margin: 3px 0; font-size: 0.85em; }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .status-online { background: #27ae60; }
+        .status-warning { background: #f39c12; }
+        
+        .main-content { flex: 1; margin-left: 280px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        
         header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 0; text-align: center; margin-bottom: 40px; border-radius: 10px; }
         .profile-section { display: flex; align-items: center; justify-content: center; gap: 30px; margin-bottom: 20px; }
         .profile-image { width: 120px; height: 120px; border-radius: 50%; border: 4px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 48px; color: rgba(255,255,255,0.7); }
         .profile-info h1 { font-size: 2.5em; margin-bottom: 10px; text-align: left; }
         .profile-info .subtitle { font-size: 1.2em; opacity: 0.9; text-align: left; }
+        
         .section { background: white; margin: 20px 0; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         .projects-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 25px; margin-bottom: 30px; }
         .project { border-left: 4px solid #667eea; padding: 18px; background: #f8f9ff; border-radius: 5px; height: fit-content; }
@@ -40,196 +62,281 @@
         .infra-item { font-size: 0.85em; }
         .infra-item:before { content: "⚡ "; color: #2196f3; }
         footer { text-align: center; margin-top: 30px; color: #666; font-size: 0.9em; }
+        
+        .mobile-menu { display: none; position: fixed; top: 20px; left: 20px; z-index: 1000; background: #2c3e50; color: white; padding: 10px; border-radius: 5px; cursor: pointer; }
+        
         @media (max-width: 1024px) {
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s; z-index: 999; }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .mobile-menu { display: block; }
             .projects-grid { grid-template-columns: 1fr 1fr; }
             .project-next { grid-column: 1 / -1; }
         }
+        
         @media (max-width: 768px) {
             .profile-section { flex-direction: column; gap: 20px; }
             .profile-info h1, .profile-info .subtitle { text-align: center; }
             .projects-grid { grid-template-columns: 1fr; }
             .infra-grid { grid-template-columns: 1fr; }
             .project-header { flex-direction: column; align-items: flex-start; }
+            .sidebar { width: 100%; }
         }
+        
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="profile-section">
-                <div class="profile-image">
-                    👨‍💻
+    <div class="layout">
+        <nav class="sidebar" id="sidebar">
+            <h3>🚀 DevOps Portfolio</h3>
+            
+            <div class="nav-section">
+                <h4>Navigation</h4>
+                <a href="#home" class="nav-link">🏠 Home</a>
+                <a href="#about" class="nav-link">👨‍💻 About</a>
+                <a href="#projects" class="nav-link">🚀 Projects</a>
+                <a href="#skills" class="nav-link">🛠️ Skills</a>
+                <a href="#infrastructure" class="nav-link">⚡ Live Infrastructure</a>
+            </div>
+            
+            <div class="nav-section">
+                <h4>Projects</h4>
+                <a href="#project1" class="nav-link">📋 Project 1: Terraform</a>
+                <a href="#project2" class="nav-link">🐳 Project 2: Kubernetes</a>
+                <a href="#project3" class="nav-link">🔄 Project 3: CI/CD</a>
+            </div>
+            
+            <div class="nav-section">
+                <h4>External Links</h4>
+                <a href="https://github.com/venkat3085" target="_blank" class="nav-link external">📁 GitHub Profile</a>
+                <a href="http://localhost:3000" target="_blank" class="nav-link external">📊 Grafana Dashboard</a>
+                <a href="#" class="nav-link external">💼 LinkedIn</a>
+            </div>
+            
+            <div class="nav-section">
+                <h4>System Status</h4>
+                <div class="status-indicator">
+                    <span class="status-dot status-online"></span>
+                    <span>Portfolio: Online</span>
                 </div>
-                <div class="profile-info">
-                    <h1>Venkat</h1>
-                    <p class="subtitle">DevOps Engineer | Container Orchestration | Cloud Infrastructure | Site Reliability</p>
+                <div class="status-indicator">
+                    <span class="status-dot status-online"></span>
+                    <span>Pods Running: 2/2</span>
+                </div>
+                <div class="status-indicator">
+                    <span class="status-dot status-online"></span>
+                    <span>Auto-scaling: Enabled</span>
+                </div>
+                <div class="status-indicator">
+                    <span class="status-dot status-online"></span>
+                    <span>Monitoring: Active</span>
                 </div>
             </div>
-        </header>
-
-        <div class="section">
-            <h2>About Me</h2>
-            <p>Passionate DevOps Engineer specializing in containerization, Kubernetes orchestration, and cloud infrastructure automation. Building production-ready, scalable, and secure applications with modern DevOps practices.</p>
-        </div>
-
-        <div class="section">
-            <h2>DevOps Projects</h2>
-            
-            <div class="projects-grid">
-                <div class="project">
-                    <div class="project-header">
-                        <div>
-                            <h3>Project 1: Infrastructure as Code</h3>
-                            <span class="status completed">✅ COMPLETED</span>
+        </nav>
+        
+        <div class="mobile-menu" onclick="toggleSidebar()">☰ Menu</div>
+        
+        <main class="main-content">
+            <div class="container">
+                <header id="home">
+                    <div class="profile-section">
+                        <div class="profile-image">
+                            👨‍💻
                         </div>
-                        <a href="https://github.com/venkat3085/proj-1-terraform" target="_blank" class="github-btn">
-                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                            </svg>
-                            Code
-                        </a>
+                        <div class="profile-info">
+                            <h1>Venkat</h1>
+                            <p class="subtitle">DevOps Engineer | Container Orchestration | Cloud Infrastructure | Site Reliability</p>
+                        </div>
                     </div>
-                    <p>Built complete AWS infrastructure using Terraform with 23 resources including VPC, EC2, S3, IAM, and monitoring.</p>
-                    
-                    <div class="achievement">
-                        <h4>Infrastructure Deployed:</h4>
-                        <ul class="steps-list">
-                            <li>VPC with public/private subnets</li>
-                            <li>Security groups & route tables</li>
-                            <li>EC2 instance with ML tools</li>
-                            <li>S3 buckets for data & state</li>
-                            <li>IAM roles and policies</li>
-                            <li>CloudWatch monitoring</li>
-                            <li>Cost management & alerts</li>
-                            <li>Remote state with DynamoDB</li>
-                        </ul>
-                    </div>
+                </header>
 
-                    <div class="skills">
-                        <span class="skill highlight">Terraform</span>
-                        <span class="skill">AWS VPC</span>
-                        <span class="skill">Security Groups</span>
-                        <span class="skill">IAM</span>
-                        <span class="skill">S3</span>
-                        <span class="skill">CloudWatch</span>
+                <div class="section" id="about">
+                    <h2>About Me</h2>
+                    <p>Passionate DevOps Engineer specializing in containerization, Kubernetes orchestration, and cloud infrastructure automation. Building production-ready, scalable, and secure applications with modern DevOps practices. Currently implementing monitoring solutions with Prometheus and Grafana for comprehensive observability.</p>
+                </div>
+
+                <div class="section" id="projects">
+                    <h2>DevOps Projects</h2>
+                    
+                    <div class="projects-grid">
+                        <div class="project" id="project1">
+                            <div class="project-header">
+                                <div>
+                                    <h3>Project 1: Infrastructure as Code</h3>
+                                    <span class="status completed">✅ COMPLETED</span>
+                                </div>
+                                <a href="https://github.com/venkat3085/proj-1-terraform" target="_blank" class="github-btn">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                    </svg>
+                                    Code
+                                </a>
+                            </div>
+                            <p>Built complete AWS infrastructure using Terraform with 23 resources including VPC, EC2, S3, IAM, and monitoring.</p>
+                            
+                            <div class="achievement">
+                                <h4>Infrastructure Deployed:</h4>
+                                <ul class="steps-list">
+                                    <li>VPC with public/private subnets</li>
+                                    <li>Security groups & route tables</li>
+                                    <li>EC2 instance with ML tools</li>
+                                    <li>S3 buckets for data & state</li>
+                                    <li>IAM roles and policies</li>
+                                    <li>CloudWatch monitoring</li>
+                                    <li>Cost management & alerts</li>
+                                    <li>Remote state with DynamoDB</li>
+                                </ul>
+                            </div>
+
+                            <div class="skills">
+                                <span class="skill highlight">Terraform</span>
+                                <span class="skill">AWS VPC</span>
+                                <span class="skill">Security Groups</span>
+                                <span class="skill">IAM</span>
+                                <span class="skill">S3</span>
+                                <span class="skill">CloudWatch</span>
+                            </div>
+                        </div>
+
+                        <div class="project" id="project2">
+                            <div class="project-header">
+                                <div>
+                                    <h3>Project 2: Container Orchestration</h3>
+                                    <span class="status completed">✅ COMPLETED</span>
+                                </div>
+                                <a href="https://github.com/venkat3085/proj-2-containers" target="_blank" class="github-btn">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                    </svg>
+                                    Code
+                                </a>
+                            </div>
+                            <p>Containerized portfolio with Docker and deployed to Kubernetes with production-ready features and monitoring.</p>
+                            
+                            <div class="achievement">
+                                <h4>Production Features:</h4>
+                                <ul class="steps-list">
+                                    <li>Docker containerization</li>
+                                    <li>Kubernetes deployment (2 replicas)</li>
+                                    <li>Auto-scaling (2-10 pods)</li>
+                                    <li>Load balancing across pods</li>
+                                    <li>Resource limits (CPU/memory)</li>
+                                    <li>Prometheus monitoring</li>
+                                    <li>Grafana dashboards</li>
+                                    <li>Multiple access methods</li>
+                                </ul>
+                            </div>
+
+                            <div class="skills">
+                                <span class="skill highlight">Docker</span>
+                                <span class="skill highlight">Kubernetes</span>
+                                <span class="skill">kubectl</span>
+                                <span class="skill">Prometheus</span>
+                                <span class="skill">Grafana</span>
+                                <span class="skill">Monitoring</span>
+                            </div>
+                        </div>
+
+                        <div class="project project-next" id="project3">
+                            <div class="project-header">
+                                <div>
+                                    <h3>Project 3: CI/CD & GitOps</h3>
+                                    <span class="status in-progress">🚧 NEXT</span>
+                                </div>
+                            </div>
+                            <p>Implementing automated CI/CD pipelines with GitHub Actions and GitOps deployment with ArgoCD.</p>
+                            
+                            <div class="achievement">
+                                <h4>Planned Features:</h4>
+                                <ul class="steps-list">
+                                    <li>GitHub Actions workflows</li>
+                                    <li>Automated testing pipeline</li>
+                                    <li>Security scanning (SAST/DAST)</li>
+                                    <li>ArgoCD GitOps deployment</li>
+                                    <li>Blue-green deployments</li>
+                                    <li>Canary releases</li>
+                                    <li>Automated rollbacks</li>
+                                    <li>Multi-environment support</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="skills">
+                                <span class="skill">GitHub Actions</span>
+                                <span class="skill">ArgoCD</span>
+                                <span class="skill">GitOps</span>
+                                <span class="skill">Testing</span>
+                                <span class="skill">Security</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="project">
-                    <div class="project-header">
-                        <div>
-                            <h3>Project 2: Container Orchestration</h3>
-                            <span class="status completed">✅ COMPLETED</span>
-                        </div>
-                        <a href="https://github.com/venkat3085/proj-2-containers" target="_blank" class="github-btn">
-                            <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-                            </svg>
-                            Code
-                        </a>
-                    </div>
-                    <p>Containerized portfolio with Docker and deployed to Kubernetes with production-ready features.</p>
-                    
-                    <div class="achievement">
-                        <h4>Production Features:</h4>
-                        <ul class="steps-list">
-                            <li>Docker containerization</li>
-                            <li>Kubernetes deployment (2 replicas)</li>
-                            <li>Auto-scaling (2-10 pods)</li>
-                            <li>Load balancing across pods</li>
-                            <li>Resource limits (CPU/memory)</li>
-                            <li>Real-time monitoring</li>
-                            <li>Multiple access methods</li>
-                            <li>Helm chart configuration</li>
-                        </ul>
-                    </div>
-
+                <div class="section" id="skills">
+                    <h2>Technical Skills</h2>
                     <div class="skills">
+                        <span class="skill highlight">AWS</span>
+                        <span class="skill highlight">Terraform</span>
                         <span class="skill highlight">Docker</span>
                         <span class="skill highlight">Kubernetes</span>
-                        <span class="skill">kubectl</span>
+                        <span class="skill highlight">kubectl</span>
+                        <span class="skill highlight">Prometheus</span>
+                        <span class="skill highlight">Grafana</span>
                         <span class="skill">Helm</span>
-                        <span class="skill">Autoscaling</span>
-                        <span class="skill">Monitoring</span>
+                        <span class="skill">Minikube</span>
+                        <span class="skill">Container Orchestration</span>
+                        <span class="skill">Pod Autoscaling</span>
+                        <span class="skill">Service Mesh</span>
+                        <span class="skill">Linux</span>
+                        <span class="skill">Git/GitHub</span>
+                        <span class="skill">Python</span>
+                        <span class="skill">YAML</span>
+                        <span class="skill">Infrastructure as Code</span>
+                        <span class="skill">Resource Management</span>
+                        <span class="skill">Security Policies</span>
+                        <span class="skill">Monitoring & Metrics</span>
                     </div>
                 </div>
 
-                <div class="project project-next">
-                    <div class="project-header">
-                        <div>
-                            <h3>Project 3: CI/CD & GitOps</h3>
-                            <span class="status in-progress">🚧 NEXT</span>
+                <div class="section" id="infrastructure">
+                    <div class="compact-infra">
+                        <h3>🚀 Live Infrastructure</h3>
+                        <div class="infra-grid">
+                            <div class="infra-item">Containerized with Docker</div>
+                            <div class="infra-item">Kubernetes orchestration (2 pods)</div>
+                            <div class="infra-item">Auto-scaling (2-10 pods)</div>
+                            <div class="infra-item">Load balanced & highly available</div>
+                            <div class="infra-item">Resource limits: 100m CPU, 128Mi RAM</div>
+                            <div class="infra-item">Prometheus monitoring enabled</div>
+                            <div class="infra-item">Grafana dashboards active</div>
+                            <div class="infra-item">Real-time metrics collection</div>
                         </div>
                     </div>
-                    <p>Implementing automated CI/CD pipelines with GitHub Actions and GitOps deployment with ArgoCD.</p>
-                    
-                    <div class="achievement">
-                        <h4>Planned Features:</h4>
-                        <ul class="steps-list">
-                            <li>GitHub Actions workflows</li>
-                            <li>Automated testing pipeline</li>
-                            <li>Security scanning (SAST/DAST)</li>
-                            <li>ArgoCD GitOps deployment</li>
-                            <li>Blue-green deployments</li>
-                            <li>Canary releases</li>
-                            <li>Automated rollbacks</li>
-                            <li>Multi-environment support</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="skills">
-                        <span class="skill">GitHub Actions</span>
-                        <span class="skill">ArgoCD</span>
-                        <span class="skill">GitOps</span>
-                        <span class="skill">Testing</span>
-                        <span class="skill">Security</span>
-                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="section">
-            <h2>Technical Skills</h2>
-            <div class="skills">
-                <span class="skill highlight">AWS</span>
-                <span class="skill highlight">Terraform</span>
-                <span class="skill highlight">Docker</span>
-                <span class="skill highlight">Kubernetes</span>
-                <span class="skill highlight">kubectl</span>
-                <span class="skill">Helm</span>
-                <span class="skill">Minikube</span>
-                <span class="skill">Container Orchestration</span>
-                <span class="skill">Pod Autoscaling</span>
-                <span class="skill">Service Mesh</span>
-                <span class="skill">Linux</span>
-                <span class="skill">Git/GitHub</span>
-                <span class="skill">Python</span>
-                <span class="skill">YAML</span>
-                <span class="skill">Infrastructure as Code</span>
-                <span class="skill">Resource Management</span>
-                <span class="skill">Security Policies</span>
-                <span class="skill">Monitoring & Metrics</span>
+                <footer>
+                    <p>🐳 Containerized with Docker • ☸️ Orchestrated with Kubernetes • 📊 Monitored with Prometheus/Grafana</p>
+                    <p>💻 Source code: <a href="https://github.com/venkat3085" target="_blank" style="color: #667eea;">GitHub</a> • Last updated: December 2025</p>
+                </footer>
             </div>
-        </div>
-
-        <div class="section">
-            <div class="compact-infra">
-                <h3>🚀 Live Infrastructure</h3>
-                <div class="infra-grid">
-                    <div class="infra-item">Containerized with Docker</div>
-                    <div class="infra-item">Kubernetes orchestration (2 pods)</div>
-                    <div class="infra-item">Auto-scaling (2-10 pods)</div>
-                    <div class="infra-item">Load balanced & highly available</div>
-                    <div class="infra-item">Resource limits: 100m CPU, 128Mi RAM</div>
-                    <div class="infra-item">Real-time monitoring enabled</div>
-                </div>
-            </div>
-        </div>
-
-        <footer>
-            <p>🐳 Containerized with Docker • 📊 Orchestrated with Kubernetes • ⚡ Auto-scaling enabled</p>
-            <p>💻 Source code: <a href="https://github.com/venkat3085" target="_blank" style="color: #667eea;">GitHub</a> • Last updated: December 2025</p>
-        </footer>
+        </main>
     </div>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+        
+        // Close sidebar when clicking on main content on mobile
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            
+            if (window.innerWidth <= 1024 && !sidebar.contains(e.target) && !mobileMenu.contains(e.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
 </body>
 </html>
