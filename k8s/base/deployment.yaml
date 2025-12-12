@@ -16,8 +16,7 @@ spec:
     spec:
       containers:
       - name: portfolio
-        image: venkat-portfolio:latest
-        imagePullPolicy: Never
+        image: venkat3085/portfolio:main-abc123  # This will be auto-updated
         ports:
         - containerPort: 80
         resources:
@@ -27,15 +26,3 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "100m"
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 30
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 80
-          initialDelaySeconds: 5
-          periodSeconds: 5
