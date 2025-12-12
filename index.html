@@ -36,7 +36,7 @@
         .profile-info .subtitle { font-size: 1.2em; opacity: 0.9; text-align: left; }
         
         .section { background: white; margin: 20px 0; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .projects-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 25px; margin-bottom: 30px; }
+        .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 30px; }
         .project { border-left: 4px solid #667eea; padding: 18px; background: #f8f9ff; border-radius: 5px; height: fit-content; }
         .project-next { border-left: 4px solid #ffc107; background: #fff8e1; }
         .project h3 { color: #667eea; margin-bottom: 8px; font-size: 1.1em; }
@@ -105,6 +105,7 @@
                 <a href="#project1" class="nav-link">📋 Project 1: Terraform</a>
                 <a href="#project2" class="nav-link">🐳 Project 2: Kubernetes</a>
                 <a href="#project3" class="nav-link">🔄 Project 3: CI/CD</a>
+                <a href="#project4" class="nav-link">🔒 Project 4: Security</a>
             </div>
             
             <div class="nav-section">
@@ -238,35 +239,74 @@
                             </div>
                         </div>
 
-                        <div class="project project-next" id="project3">
+                        <div class="project" id="project3">
                             <div class="project-header">
                                 <div>
-                                    <h3>Project 3: CI/CD & GitOps</h3>
-                                    <span class="status in-progress">🚧 NEXT</span>
+                                    <h3>Project 3: CI/CD & GitOps Pipeline</h3>
+                                    <span class="status completed">✅ COMPLETED</span>
                                 </div>
+                                <a href="https://github.com/venkat3085/proj-2-containers" target="_blank" class="github-btn">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                    </svg>
+                                    Code
+                                </a>
                             </div>
-                            <p>Implementing automated CI/CD pipelines with GitHub Actions and GitOps deployment with ArgoCD.</p>
+                            <p>Complete CI/CD automation with GitHub Actions, DockerHub integration, and ArgoCD GitOps deployment.</p>
                             
                             <div class="achievement">
-                                <h4>Planned Features:</h4>
+                                <h4>Pipeline Features:</h4>
                                 <ul class="steps-list">
-                                    <li>GitHub Actions workflows</li>
-                                    <li>Automated testing pipeline</li>
-                                    <li>Security scanning (SAST/DAST)</li>
+                                    <li>GitHub Actions CI/CD workflow</li>
+                                    <li>Automated testing with pytest</li>
+                                    <li>Docker image build & push</li>
+                                    <li>DockerHub registry integration</li>
                                     <li>ArgoCD GitOps deployment</li>
-                                    <li>Blue-green deployments</li>
-                                    <li>Canary releases</li>
-                                    <li>Automated rollbacks</li>
-                                    <li>Multi-environment support</li>
+                                    <li>Automated manifest updates</li>
+                                    <li>Kubernetes sync & rollout</li>
+                                    <li>End-to-end automation</li>
                                 </ul>
                             </div>
                             
                             <div class="skills">
-                                <span class="skill">GitHub Actions</span>
-                                <span class="skill">ArgoCD</span>
-                                <span class="skill">GitOps</span>
-                                <span class="skill">Testing</span>
+                                <span class="skill highlight">GitHub Actions</span>
+                                <span class="skill highlight">ArgoCD</span>
+                                <span class="skill highlight">GitOps</span>
+                                <span class="skill">DockerHub</span>
+                                <span class="skill">pytest</span>
+                                <span class="skill">CI/CD</span>
+                            </div>
+                        </div>
+
+                        <div class="project project-next" id="project4">
+                            <div class="project-header">
+                                <div>
+                                    <h3>Project 4: Security & Compliance</h3>
+                                    <span class="status in-progress">🚧 NEXT</span>
+                                </div>
+                            </div>
+                            <p>Implementing security scanning, compliance checks, and vulnerability management in the CI/CD pipeline.</p>
+                            
+                            <div class="achievement">
+                                <h4>Planned Features:</h4>
+                                <ul class="steps-list">
+                                    <li>Container security scanning</li>
+                                    <li>SAST/DAST integration</li>
+                                    <li>Vulnerability assessments</li>
+                                    <li>Policy enforcement</li>
+                                    <li>Compliance reporting</li>
+                                    <li>Secret management</li>
+                                    <li>Security gates</li>
+                                    <li>Audit logging</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="skills">
+                                <span class="skill">Trivy</span>
+                                <span class="skill">OWASP</span>
+                                <span class="skill">Vault</span>
                                 <span class="skill">Security</span>
+                                <span class="skill">Compliance</span>
                             </div>
                         </div>
                     </div>
