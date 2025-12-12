@@ -19,3 +19,4 @@ Thumbs.db
 
 # Helm
 charts/*.tgz
+.venv/
