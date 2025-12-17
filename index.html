@@ -27,7 +27,7 @@
         .status-warning { background: #f39c12; }
         
         .main-content { flex: 1; margin-left: 280px; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
         
         header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 0; text-align: center; margin-bottom: 40px; border-radius: 10px; }
         .profile-section { display: flex; align-items: center; justify-content: center; gap: 30px; margin-bottom: 20px; }
@@ -36,7 +36,7 @@
         .profile-info .subtitle { font-size: 1.2em; opacity: 0.9; text-align: left; }
         
         .section { background: white; margin: 20px 0; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .projects-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 25px; margin-bottom: 30px; }
+        .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; }
         .project { border-left: 4px solid #667eea; padding: 18px; background: #f8f9ff; border-radius: 5px; height: fit-content; }
         .project-next { border-left: 4px solid #ffc107; background: #fff8e1; }
         .project h3 { color: #667eea; margin-bottom: 8px; font-size: 1.1em; }
@@ -70,7 +70,7 @@
             .sidebar.open { transform: translateX(0); }
             .main-content { margin-left: 0; }
             .mobile-menu { display: block; }
-            .projects-grid { grid-template-columns: 1fr 1fr 1fr; }
+            .projects-grid { grid-template-columns: 1fr 1fr; }
             .project-next { grid-column: 1 / -1; }
         }
         
@@ -160,29 +160,30 @@
                     <p>Passionate DevOps Engineer specializing in containerization, Kubernetes orchestration, and cloud infrastructure automation. Building production-ready, scalable, and secure applications with modern DevOps practices. Currently implementing monitoring solutions with Prometheus and Grafana for comprehensive observability.</p>
                 </div>
 
+                <!-- Live System Status - Compact placement -->
+                <div style="text-align: center; margin: 20px 0; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 8px; border-left: 4px solid #f39c12;">
+                    <a href="http://localhost:8000/status" target="_blank" style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 10px;
+                        background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+                        color: white;
+                        padding: 10px 20px;
+                        border-radius: 20px;
+                        text-decoration: none;
+                        font-size: 1em;
+                        font-weight: bold;
+                        box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
+                        transition: all 0.3s;
+                    " onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 4px 12px rgba(243, 156, 18, 0.4)'" 
+                       onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(243, 156, 18, 0.3)'">
+                        🔧 Live System Status
+                    </a>
+                    <span style="margin-left: 15px; opacity: 0.7; font-size: 0.9em;">Real-time infrastructure monitoring</span>
+                </div>
+
                 <div class="section" id="projects">
                     <h2>DevOps Projects</h2>
-                    
-                    <!-- Live System Status - Prominent placement -->
-                    <div style="text-align: center; margin-bottom: 30px; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px; border: 2px solid #f39c12;">
-                        <h3 style="color: #f39c12; margin-bottom: 15px;">🚀 Live Infrastructure Status</h3>
-                        <a href="http://localhost:8080/status" target="_blank" style="
-                            display: inline-block;
-                            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-                            color: white;
-                            padding: 15px 30px;
-                            border-radius: 25px;
-                            text-decoration: none;
-                            font-size: 1.2em;
-                            font-weight: bold;
-                            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
-                            transition: all 0.3s;
-                        " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 20px rgba(243, 156, 18, 0.4)'" 
-                           onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(243, 156, 18, 0.3)'">
-                            🔧 View Live System Status
-                        </a>
-                        <p style="margin-top: 10px; opacity: 0.8; font-size: 0.9em;">Real-time monitoring dashboard for all services</p>
-                    </div>
                     
                     <div class="projects-grid">
                         <div class="project" id="project1">
