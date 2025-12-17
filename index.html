@@ -18,8 +18,8 @@
         
         .nav-link { display: block; padding: 10px 15px; margin: 5px 0; color: #ecf0f1; text-decoration: none; border-radius: 5px; transition: all 0.3s; font-size: 0.9em; }
         .nav-link:hover { background: rgba(255,255,255,0.1); transform: translateX(5px); }
-        .nav-link.external { color: #1e3a8a; }
-        .nav-link.external:hover { color: #1e40af; }
+        .nav-link.external { color: #f39c12; }
+        .nav-link.external:hover { color: #e67e22; }
         
         .status-indicator { display: flex; align-items: center; gap: 8px; padding: 8px 15px; margin: 3px 0; font-size: 0.85em; }
         .status-dot { width: 8px; height: 8px; border-radius: 50%; }
@@ -106,13 +106,15 @@
                 <a href="#project2" class="nav-link">🐳 Project 2: Kubernetes</a>
                 <a href="#project3" class="nav-link">🔄 Project 3: CI/CD</a>
                 <a href="#cleanup" class="nav-link">🧹 Cleanup & Optimization</a>
-                <a href="#project4" class="nav-link">🔒 Project 4: Security</a>
+                <a href="#project4" class="nav-link">📊 Project 4: Observability</a>
+                <a href="#project5" class="nav-link">🔧 Project 5: SRE</a>
             </div>
             
             <div class="nav-section">
                 <h4>External Links</h4>
                 <a href="https://github.com/venkat3085" target="_blank" class="nav-link external">📁 GitHub Profile</a>
                 <a href="http://localhost:3000" target="_blank" class="nav-link external">📊 Grafana Dashboard</a>
+                <a href="http://localhost:8080/status" target="_blank" class="nav-link external">🔧 Live System Status</a>
                 <a href="https://www.linkedin.com/in/venkata-narayana-reddy-mukku-a5531b326/" target="_blank" class="nav-link external">💼 LinkedIn</a>
             </div>
             
@@ -279,80 +281,115 @@
                             </div>
                         </div>
 
-                        <div class="project project-completed" id="cleanup">
+                        <div class="project" id="cleanup">
                             <div class="project-header">
                                 <div>
                                     <h3>Cleanup & Optimization</h3>
                                     <span class="status completed">✅ COMPLETED</span>
                                 </div>
-                                <a href="https://github.com/venkat3085/proj-2-3-containers-CI-CD" target="_blank" class="github-btn">📁 View Code</a>
+                                <a href="https://github.com/venkat3085/proj-2-3-containers-CI-CD" target="_blank" class="github-btn">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                    </svg>
+                                    Code
+                                </a>
                             </div>
-                            <p>Optimized project structure by identifying and safely removing unnecessary files while maintaining full CI/CD functionality.</p>
+                            <p>Optimized project structure by removing unnecessary files while maintaining full CI/CD functionality.</p>
                             
                             <div class="achievement">
-                                <h4>Cleanup Process:</h4>
+                                <h4>Optimization Results:</h4>
                                 <ul class="steps-list">
-                                    <li>✅ Analyzed project structure and identified unnecessary files</li>
-                                    <li>✅ Moved files to backup (.venv, caches, backup workflows)</li>
-                                    <li>✅ Created cleanup-check.sh detection tool</li>
-                                    <li>✅ Tested CI/CD pipeline after optimization</li>
-                                    <li>✅ Updated documentation with cleanup methodology</li>
-                                    <li>✅ Verified full functionality maintained</li>
+                                    <li>Removed .venv, caches, backups</li>
+                                    <li>Created cleanup detection tool</li>
+                                    <li>Tested CI/CD after optimization</li>
+                                    <li>Updated documentation</li>
+                                    <li>Maintained full functionality</li>
+                                    <li>Cleaner project structure</li>
+                                    <li>Faster pipeline execution</li>
+                                    <li>Zero functionality loss</li>
                                 </ul>
                             </div>
 
-                            <div class="achievement">
-                                <h4>Files Optimized:</h4>
-                                <ul class="steps-list">
-                                    <li>Python virtual environment (.venv/) - Docker handles dependencies</li>
-                                    <li>Test cache files (.pytest_cache/) - Auto-regenerated</li>
-                                    <li>Python bytecode cache (__pycache__/) - Auto-regenerated</li>
-                                    <li>Backup workflow files - Old versions not needed</li>
-                                    <li>Helm charts - Using direct K8s manifests + ArgoCD</li>
-                                </ul>
-                            </div>
-
-                            <div class="achievement">
-                                <h4>Results:</h4>
-                                <ul class="steps-list">
-                                    <li>🚀 Cleaner project structure</li>
-                                    <li>⚡ Faster CI/CD pipeline</li>
-                                    <li>🛠️ Reusable cleanup tool created</li>
-                                    <li>📚 Comprehensive documentation</li>
-                                    <li>✅ Zero functionality loss</li>
-                                </ul>
+                            <div class="skills">
+                                <span class="skill highlight">Project Optimization</span>
+                                <span class="skill">Shell Scripting</span>
+                                <span class="skill">CI/CD Testing</span>
+                                <span class="skill">Documentation</span>
+                                <span class="skill">Git Management</span>
+                                <span class="skill">Cleanup Tools</span>
                             </div>
                         </div>
 
-                        <div class="project project-next" id="project4">
+                        <div class="project" id="project4">
                             <div class="project-header">
                                 <div>
-                                    <h3>Project 4: Security & Compliance</h3>
-                                    <span class="status in-progress">🚧 NEXT</span>
+                                    <h3>Project 4: Observability & Monitoring Stack</h3>
+                                    <span class="status completed">✅ COMPLETED</span>
                                 </div>
+                                <a href="https://github.com/venkat3085/proj-4-observability-monitoring" target="_blank" class="github-btn">
+                                    <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                    </svg>
+                                    Code
+                                </a>
                             </div>
-                            <p>Implementing security scanning, compliance checks, and vulnerability management in the CI/CD pipeline.</p>
+                            <p>Complete observability platform with metrics, logs, and distributed tracing for production monitoring.</p>
                             
                             <div class="achievement">
-                                <h4>Planned Features:</h4>
+                                <h4>Monitoring Stack:</h4>
                                 <ul class="steps-list">
-                                    <li>Container security scanning</li>
-                                    <li>SAST/DAST integration</li>
-                                    <li>Vulnerability assessments</li>
-                                    <li>Policy enforcement</li>
-                                    <li>Compliance reporting</li>
-                                    <li>Secret management</li>
-                                    <li>Security gates</li>
-                                    <li>Audit logging</li>
+                                    <li>Prometheus metrics collection</li>
+                                    <li>Grafana visualization dashboards</li>
+                                    <li>Elasticsearch log storage</li>
+                                    <li>Kibana log analysis</li>
+                                    <li>Filebeat log collection</li>
+                                    <li>Jaeger distributed tracing</li>
+                                    <li>6 services in monitoring namespace</li>
+                                    <li>Production-ready observability</li>
                                 </ul>
                             </div>
                             
                             <div class="skills">
-                                <span class="skill">Trivy</span>
-                                <span class="skill">OWASP</span>
-                                <span class="skill">Vault</span>
-                                <span class="skill">Security</span>
-                                <span class="skill">Compliance</span>
+                                <span class="skill highlight">Prometheus</span>
+                                <span class="skill highlight">Grafana</span>
+                                <span class="skill highlight">ELK Stack</span>
+                                <span class="skill">Elasticsearch</span>
+                                <span class="skill">Kibana</span>
+                                <span class="skill">Jaeger</span>
+                                <span class="skill">Filebeat</span>
+                                <span class="skill">Observability</span>
+                            </div>
+                        </div>
+
+                        <div class="project project-next" id="project5">
+                            <div class="project-header">
+                                <div>
+                                    <h3>Project 5: Site Reliability Engineering</h3>
+                                    <span class="status in-progress">🔄 IN PROGRESS</span>
+                                </div>
+                            </div>
+                            <p>Implementing SRE principles including error budgets, chaos engineering, and capacity planning.</p>
+                            
+                            <div class="achievement">
+                                <h4>SRE Features:</h4>
+                                <ul class="steps-list">
+                                    <li>Error budget tracking</li>
+                                    <li>Chaos engineering tests</li>
+                                    <li>Capacity planning</li>
+                                    <li>ML model drift detection</li>
+                                    <li>Automated scaling</li>
+                                    <li>Post-mortem processes</li>
+                                    <li>Toil reduction automation</li>
+                                    <li>Incident response runbooks</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="skills">
+                                <span class="skill">SRE Principles</span>
+                                <span class="skill">Error Budgets</span>
+                                <span class="skill">Chaos Engineering</span>
+                                <span class="skill">Capacity Planning</span>
+                                <span class="skill">Incident Response</span>
                             </div>
                         </div>
                     </div>
@@ -368,11 +405,19 @@
                         <span class="skill highlight">kubectl</span>
                         <span class="skill highlight">Prometheus</span>
                         <span class="skill highlight">Grafana</span>
+                        <span class="skill highlight">ELK Stack</span>
+                        <span class="skill highlight">Elasticsearch</span>
+                        <span class="skill highlight">Kibana</span>
+                        <span class="skill highlight">Jaeger</span>
+                        <span class="skill highlight">Filebeat</span>
                         <span class="skill">Helm</span>
                         <span class="skill">Minikube</span>
                         <span class="skill">Container Orchestration</span>
                         <span class="skill">Pod Autoscaling</span>
                         <span class="skill">Service Mesh</span>
+                        <span class="skill">Observability</span>
+                        <span class="skill">Log Aggregation</span>
+                        <span class="skill">Distributed Tracing</span>
                         <span class="skill">Linux</span>
                         <span class="skill">Git/GitHub</span>
                         <span class="skill">Python</span>
@@ -393,15 +438,19 @@
                             <div class="infra-item">Auto-scaling (2-10 pods)</div>
                             <div class="infra-item">Load balanced & highly available</div>
                             <div class="infra-item">Resource limits: 100m CPU, 128Mi RAM</div>
-                            <div class="infra-item">Prometheus monitoring enabled</div>
-                            <div class="infra-item">Grafana dashboards active</div>
-                            <div class="infra-item">Real-time metrics collection</div>
+                            <div class="infra-item">Complete observability stack (6 services)</div>
+                            <div class="infra-item">Prometheus + Grafana monitoring</div>
+                            <div class="infra-item">ELK Stack log aggregation</div>
+                            <div class="infra-item">Jaeger distributed tracing</div>
+                            <div class="infra-item">Filebeat log collection</div>
+                            <div class="infra-item">Real-time metrics & alerts</div>
+                            <div class="infra-item">Production-ready monitoring</div>
                         </div>
                     </div>
                 </div>
 
                 <footer>
-                    <p>🐳 Containerized with Docker • ☸️ Orchestrated with Kubernetes • 📊 Monitored with Prometheus/Grafana • 🔄 CI/CD Auto-Test</p>
+                    <p>🐳 Containerized with Docker • ☸️ Orchestrated with Kubernetes • 📊 Complete Observability Stack • 🔄 CI/CD GitOps</p>
                     <p>💻 Source code: <a href="https://github.com/venkat3085" target="_blank" style="color: #667eea;">GitHub</a> • Last updated: December 2025</p>
                 </footer>
             </div>
@@ -427,3 +476,4 @@
 </body>
 </html>
 
+<!-- Test CI/CD Wed Dec 17 13:32:42 IST 2025 -->
