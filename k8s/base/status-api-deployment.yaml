@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: status-api
-        image: venkat3085/status-api:main-2df4a1e
+        image: venkat3085/status-api:main-4ed41a2
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
