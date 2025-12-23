@@ -56,17 +56,19 @@ jobs:
           echo "Updating local deployment to: $IMAGE_TAG"
           sed -i "s|image:.*|image: $IMAGE_TAG|g" k8s/base/deployment.yaml
 
-      - name: Setup GCP for direct deployment
-        uses: google-github-actions/setup-gcloud@v1
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
         with:
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
 
       - name: Deploy to GCP GKE
         run: |
           gcloud container clusters get-credentials devops-cluster \
             --zone us-central1-a \
-            --project ${{ secrets.GCP_PROJECT_ID }}
+            --project devops-portfolio-migration
           kubectl set image deployment/portfolio portfolio=${{ steps.meta.outputs.tags }}
           echo "Deployed to GCP: ${{ steps.meta.outputs.tags }}"
 
