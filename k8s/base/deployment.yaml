@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: portfolio
-        image: venkat3085/portfolio:main-ee03cea
+        image: venkat3085/portfolio:main-2df4a1e
         ports:
         - containerPort: 80
         resources:
