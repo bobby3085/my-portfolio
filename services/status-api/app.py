@@ -186,8 +186,8 @@ def get_live_gcp_metrics():
 def get_prometheus_metrics():
     """Fetch live metrics from GCP GKE with Prometheus fallback"""
     try:
-        # Get GCP GKE metrics first
-        gcp_metrics = get_live_gcp_metrics()
+        # Get local development metrics first
+        local_metrics = get_local_metrics()
         
         # Try to enhance with Prometheus if available
         try:
@@ -196,30 +196,30 @@ def get_prometheus_metrics():
                                   params={"query": "up"}, timeout=3)
             
             if response.status_code == 200:
-                gcp_metrics["prometheus_connected"] = True
-                gcp_metrics["data_source"] = "gcp_gke+prometheus"
+                local_metrics["prometheus_connected"] = True
+                local_metrics["data_source"] = "local+prometheus"
             else:
-                gcp_metrics["prometheus_connected"] = False
+                local_metrics["prometheus_connected"] = False
                 
         except Exception as e:
-            gcp_metrics["prometheus_connected"] = False
+            local_metrics["prometheus_connected"] = False
             logger.info(f"Prometheus not available: {str(e)}")
         
-        return gcp_metrics
+        return local_metrics
         
     except Exception as e:
         logger.error(f"Error getting GCP metrics: {str(e)}")
         # Fallback data
         return {
-            "total_pods": 33,
-            "running_pods": 33,
-            "portfolio_pods": 2,
-            "node_count": 3,
-            "namespaces": {"default": {"total": 6, "running": 6}, "monitoring": {"total": 2, "running": 2}},
+            "total_pods": 10,
+            "running_pods": 10,
+            "portfolio_pods": "2/2",
+            "node_count": 1,
+            "namespaces": ["default", "monitoring"],
             "cpu_usage": "15m",
             "memory_usage": "64Mi",
             "prometheus_connected": False,
-            "data_source": "gcp_static_fallback",
+            "data_source": "local_fallback",
             "error": str(e)
         }
 
