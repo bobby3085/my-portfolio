@@ -6,7 +6,8 @@ permissions:
 on:
   push:
     branches:
-      - main   # change if your repo uses master or another branch
+      - main   # adjust if your repo uses a different branch
+  workflow_dispatch:   # allows manual runs from the Actions tab
 
 jobs:
   build_and_deploy:
