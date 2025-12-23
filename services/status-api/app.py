@@ -56,33 +56,31 @@ def log_request(f):
         return result
     return decorated_function
 
-def get_gcp_info():
-    """Get GCP-specific information"""
+def get_production_info():
+    """Get production hosting information"""
     try:
-        gcp_info = {
-            "project_id": "devops-portfolio-migration",
-            "cluster_name": "devops-cluster",
-            "zone": "us-central1-a",
-            "load_balancer_ip": "34.55.51.11",
-            "custom_domain": "prash.shop",
-            "cloud_run_url": "https://portfolio-app-123155189240.us-central1.run.app",
-            "deployment_type": "hybrid",
-            "services": {
-                "cloud_run": "portfolio-app",
-                "gke_services": ["portfolio", "status-api", "nginx-proxy", "prometheus", "grafana"]
+        production_info = {
+            "portfolio": {
+                "platform": "Vercel",
+                "domain": "https://prash.shop",
+                "status": "active",
+                "features": "Global CDN, SSL, Auto-deploy"
             },
-            "security_features": [
-                "Rate limiting (60 req/min)",
-                "Request logging",
-                "Network policies",
-                "Container isolation"
-            ],
-            "cost_optimization": "48% savings achieved"
+            "status_api": {
+                "platform": "Railway", 
+                "domain": "https://status.prash.shop",
+                "status": "active",
+                "features": "Docker, Auto-deploy, Custom domain"
+            },
+            "hosting_cost": "$0/month (free tier)",
+            "ssl_certificates": "2 (automatic)",
+            "deployment_method": "GitHub auto-deploy",
+            "cost_optimization": "90% savings vs GCP"
         }
-        return gcp_info
+        return production_info
     except Exception as e:
-        logger.error(f"Error getting GCP info: {str(e)}")
-        return {"error": "GCP info unavailable"}
+        logger.error(f"Error getting production info: {str(e)}")
+        return {"error": "Production info unavailable"}
 
 def get_live_gcp_metrics():
     """Get live GCP GKE metrics directly from kubectl and GCP APIs"""
@@ -229,9 +227,9 @@ def get_prometheus_metrics():
 @rate_limit
 @log_request
 def system_status():
-    # Get live metrics and GCP info
+    # Get live metrics and production info
     metrics = get_prometheus_metrics()
-    gcp_info = get_gcp_info()
+    production_info = get_production_info()
     
     # HTML template for beautiful dashboard
     html_template = """
@@ -476,7 +474,7 @@ def system_status():
                 <div class="status-card">
                     <div class="card-header">
                         <div class="card-icon">☸️</div>
-                        <div class="card-title">GCP GKE Cluster</div>
+                        <div class="card-title">Local Development</div>
                     </div>
                     <div class="metric">
                         <span class="metric-label">Total Pods:</span>
@@ -510,7 +508,7 @@ def system_status():
                 <div class="status-card">
                     <div class="card-header">
                         <div class="card-icon">☁️</div>
-                        <div class="card-title">GCP Cloud Deployment</div>
+                        <div class="card-title">Production Hosting</div>
                     </div>
                     <div class="metric">
                         <span class="metric-label">Project:</span>
