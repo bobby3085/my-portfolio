@@ -1,4 +1,4 @@
-name: Dual Environment Deploy
+name: Dual Environment Deploy - Portfolio & Status API
 
 permissions:
   contents: write
@@ -36,25 +36,34 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
 
-      - name: Set image tag
+      - name: Set image tags
         id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: venkat3085/portfolio
-          tags: type=sha,format=short,prefix=main-
+        run: |
+          COMMIT_SHA=$(git rev-parse --short HEAD)
+          echo "portfolio_tag=venkat3085/portfolio:main-${COMMIT_SHA}" >> $GITHUB_OUTPUT
+          echo "status_api_tag=venkat3085/status-api:main-${COMMIT_SHA}" >> $GITHUB_OUTPUT
 
-      - name: Build and push Docker image
+      - name: Build and push Portfolio image
         uses: docker/build-push-action@v5
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.portfolio_tag }}
 
-      - name: Update deployment manifest for ArgoCD
+      - name: Build and push Status API image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./services/status-api
+          push: true
+          tags: ${{ steps.meta.outputs.status_api_tag }}
+
+      - name: Update deployment manifests for ArgoCD
         run: |
-          IMAGE_TAG="${{ steps.meta.outputs.tags }}"
-          echo "Updating local deployment to: $IMAGE_TAG"
-          sed -i "s|image:.*|image: $IMAGE_TAG|g" k8s/base/deployment.yaml
+          echo "Updating portfolio deployment to: ${{ steps.meta.outputs.portfolio_tag }}"
+          sed -i "s|image: venkat3085/portfolio:.*|image: ${{ steps.meta.outputs.portfolio_tag }}|g" k8s/base/deployment.yaml
+          
+          echo "Updating status-api deployment to: ${{ steps.meta.outputs.status_api_tag }}"
+          sed -i "s|image: venkat3085/status-api:.*|image: ${{ steps.meta.outputs.status_api_tag }}|g" k8s/base/status-api-deployment.yaml
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
@@ -71,14 +80,18 @@ jobs:
           gcloud container clusters get-credentials devops-cluster \
             --zone us-central1-a \
             --project devops-portfolio-migration
-          kubectl set image deployment/portfolio portfolio=${{ steps.meta.outputs.tags }}
-          echo "Deployed to GCP: ${{ steps.meta.outputs.tags }}"
+          
+          echo "Deploying portfolio to GCP: ${{ steps.meta.outputs.portfolio_tag }}"
+          kubectl set image deployment/portfolio portfolio=${{ steps.meta.outputs.portfolio_tag }}
+          
+          echo "Deploying status-api to GCP: ${{ steps.meta.outputs.status_api_tag }}"
+          kubectl set image deployment/status-api status-api=${{ steps.meta.outputs.status_api_tag }}
 
       - name: Commit local deployment changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add k8s/base/deployment.yaml
-          git diff --staged --quiet || git commit -m "Update deployment to ${{ steps.meta.outputs.tags }}"
+          git add k8s/base/deployment.yaml k8s/base/status-api-deployment.yaml
+          git diff --staged --quiet || git commit -m "Update deployments - Portfolio: ${{ steps.meta.outputs.portfolio_tag }}, Status-API: ${{ steps.meta.outputs.status_api_tag }}"
           git push
 
