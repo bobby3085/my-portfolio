@@ -489,12 +489,12 @@ def system_status():
                         <span class="metric-value">{{ node_count }}</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">Project:</span>
-                        <span class="metric-value">{{ gcp_info.project_id }}</span>
+                        <span class="metric-label">Platform:</span>
+                        <span class="metric-value">{{ production_info.portfolio.platform }}</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">Zone:</span>
-                        <span class="metric-value">{{ gcp_info.zone }}</span>
+                        <span class="metric-label">Domain:</span>
+                        <span class="metric-value">{{ production_info.portfolio.domain }}</span>
                     </div>
                     <div class="metric">
                         <span class="metric-label">Data Source:</span>
@@ -511,28 +511,24 @@ def system_status():
                         <div class="card-title">Production Hosting</div>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">Project:</span>
-                        <span class="metric-value">{{ gcp_info.project_id }}</span>
+                        <span class="metric-label">Portfolio:</span>
+                        <span class="metric-value">{{ production_info.portfolio.platform }}</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">Cluster:</span>
-                        <span class="metric-value">{{ gcp_info.cluster_name }}</span>
-                    </div>
-                    <div class="metric">
-                        <span class="metric-label">Zone:</span>
-                        <span class="metric-value">{{ gcp_info.zone }}</span>
+                        <span class="metric-label">Status-API:</span>
+                        <span class="metric-value">{{ production_info.status_api.platform }}</span>
                     </div>
                     <div class="metric">
                         <span class="metric-label">Domain:</span>
-                        <span class="metric-value">{{ gcp_info.custom_domain }}</span>
+                        <span class="metric-value">{{ production_info.portfolio.domain }}</span>
                     </div>
                     <div class="metric">
-                        <span class="metric-label">Load Balancer:</span>
-                        <span class="metric-value">{{ gcp_info.load_balancer_ip }}</span>
+                        <span class="metric-label">Hosting Cost:</span>
+                        <span class="metric-value">{{ production_info.hosting_cost }}</span>
                     </div>
                     <div class="metric">
                         <span class="metric-label">Cost Savings:</span>
-                        <span class="metric-value">{{ gcp_info.cost_optimization }}</span>
+                        <span class="metric-value">{{ production_info.cost_optimization }}</span>
                     </div>
                 </div>
             </div>
@@ -556,9 +552,9 @@ def system_status():
         portfolio_pods=metrics["portfolio_pods"],
         node_count=metrics.get("node_count", 3),
         prometheus_connected=metrics["prometheus_connected"],
-        gcp_connected=metrics.get("gcp_connected", True),
+        gcp_connected=metrics.get("local_connected", True),
         data_source=metrics["data_source"],
-        gcp_info=gcp_info
+        production_info=production_info
     )
 
 @app.route('/api/status')
@@ -567,13 +563,13 @@ def system_status():
 def api_status():
     # JSON API endpoint for programmatic access
     metrics = get_prometheus_metrics()
-    gcp_info = get_gcp_info()
+    production_info = get_production_info()
     
     return jsonify({
         "system_status": "healthy",
         "timestamp": datetime.utcnow().isoformat() + "Z",
         "data_source": "live" if metrics["prometheus_connected"] else "static",
-        "gcp_deployment": gcp_info,
+        "production_deployment": production_info,
         "services": {
             "portfolio_app": {
                 "status": "running",
