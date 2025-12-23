@@ -409,7 +409,7 @@ def system_status():
                     </div>
                     <div class="metric">
                         <span class="metric-label">Active Pods:</span>
-                        <span class="metric-value">{{ portfolio_pods }}/2</span>
+                        <span class="metric-value">{{ portfolio_pods }}</span>
                     </div>
                     <div class="metric">
                         <span class="metric-label">CPU Usage:</span>
@@ -573,7 +573,7 @@ def api_status():
         "services": {
             "portfolio_app": {
                 "status": "running",
-                "pods": f"{metrics['portfolio_pods']}/2",
+                "pods": metrics['portfolio_pods'],
                 "cpu_usage": metrics["cpu_usage"],
                 "memory_usage": metrics["memory_usage"],
                 "uptime": "live data",
