@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Venkata Narayana Reddy Mukku - DevOps Engineer Resume</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -160,11 +161,32 @@
         @media print {
             body { background: white; padding: 0; }
             .resume-container { box-shadow: none; }
+            .download-btn { display: none; }
+        }
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
         }
     </style>
 </head>
 <body>
-    <div class="resume-container">
+    <button class="download-btn" onclick="downloadPDF()">📄 Download PDF</button>
+    <div class="resume-container" id="resume-content">
         <div class="header">
             <h1>Venkata Narayana Reddy Mukku</h1>
             <div class="title">DevOps Engineer | Cloud Infrastructure</div>
@@ -323,5 +345,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function downloadPDF() {
+            const element = document.getElementById('resume-content');
+            const opt = {
+                margin: 0.5,
+                filename: 'Venkata_Narayana_Reddy_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            
+            // Show loading message
+            const btn = document.querySelector('.download-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '⏳ Generating PDF...';
+            btn.disabled = true;
+            
+            html2pdf().set(opt).from(element).save().then(() => {
+                // Reset button
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
+        }
+    </script>
 </body>
 </html>
