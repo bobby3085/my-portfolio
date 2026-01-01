@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venkata Narayana Reddy Mukku - DevOps Engineer Resume</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Arial', sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background: #f8f9fa;
+            padding: 20px;
+        }
+        .resume-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .header .title {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            font-size: 0.9em;
+        }
+        .contact-info div {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .content {
+            padding: 40px;
+        }
+        .section {
+            margin-bottom: 35px;
+        }
+        .section h2 {
+            color: #1e40af;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 5px;
+        }
+        .experience-item, .education-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 3px solid #3b82f6;
+            padding: 15px 0 15px 20px;
+        }
+        .experience-item h3 {
+            color: #2d3748;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+        .experience-item .company {
+            color: #1e40af;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .experience-item .duration {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .experience-item ul {
+            margin-left: 20px;
+        }
+        .experience-item li {
+            margin-bottom: 5px;
+            color: #4a5568;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .skill-category h3 {
+            color: #1e40af;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .skill-tag {
+            background: #3b82f6;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+        .projects {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+        .project-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .project-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        .project-item h3 {
+            color: #1e40af;
+            margin-bottom: 5px;
+        }
+        .project-item .tech-stack {
+            color: #666;
+            font-size: 0.9em;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        .languages {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .language-item {
+            background: #e2e8f0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #2d3748;
+        }
+        @media (max-width: 768px) {
+            .contact-info { flex-direction: column; gap: 10px; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .content { padding: 20px; }
+            .header { padding: 30px 20px; }
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .resume-container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-container">
+        <div class="header">
+            <h1>Venkata Narayana Reddy Mukku</h1>
+            <div class="title">DevOps Engineer | Cloud Infrastructure</div>
+            <div class="contact-info">
+                <div>📧 venkat3085@zohomail.in</div>
+                <div>🌐 prash.shop</div>
+                <div>💼 LinkedIn: venkata-narayana-reddy-mukku</div>
+                <div>📍 India</div>
+                <div>📞 Available upon request</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2>Professional Summary</h2>
+                <p>Passionate DevOps Engineer with hands-on experience in containerization, cloud infrastructure, and automation. Self-motivated technology enthusiast with a strong foundation in Linux, Docker, Kubernetes, and cloud platforms. Demonstrated ability to learn and implement complex technologies through practical projects and real-world deployments.</p>
+            </div>
+
+            <div class="section">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Cloud & Infrastructure</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">Google Cloud Platform</span>
+                            <span class="skill-tag">Azure</span>
+                            <span class="skill-tag">Terraform</span>
+                            <span class="skill-tag">VPC Networking</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Containerization & Orchestration</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">GKE</span>
+                            <span class="skill-tag">kubectl</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>CI/CD & Automation</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">GitHub Actions</span>
+                            <span class="skill-tag">ArgoCD</span>
+                            <span class="skill-tag">Cloud Build</span>
+                            <span class="skill-tag">Shell Scripting</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Monitoring & Tools</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Prometheus</span>
+                            <span class="skill-tag">Grafana</span>
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Linux</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>DevOps Projects Portfolio</h2>
+                <div class="projects">
+                    <div class="project-item">
+                        <h3>Production GCP Deployment Pipeline</h3>
+                        <div class="tech-stack">GKE, Cloud Build, Artifact Registry, Load Balancer, HPA</div>
+                        <p>Built complete production deployment on Google Cloud Platform using imperative commands. Solved VPC networking challenges and implemented enterprise-grade autoscaling (2-20 pods based on CPU usage).</p>
+                    </div>
+                    <div class="project-item">
+                        <h3>Container Orchestration with Kubernetes</h3>
+                        <div class="tech-stack">Docker, Kubernetes, Minikube, YAML Manifests</div>
+                        <p>Developed containerized portfolio application with 2-replica deployment, horizontal pod autoscaling, and zero-downtime rolling updates.</p>
+                    </div>
+                    <div class="project-item">
+                        <h3>Infrastructure as Code with Terraform</h3>
+                        <div class="tech-stack">Terraform, AWS, VPC, EC2, S3, IAM</div>
+                        <p>Automated AWS infrastructure provisioning including VPC setup, security groups, EC2 instances, and S3 buckets with proper IAM policies.</p>
+                    </div>
+                    <div class="project-item">
+                        <h3>CI/CD Pipeline Implementation</h3>
+                        <div class="tech-stack">GitHub Actions, ArgoCD, DockerHub, GitOps</div>
+                        <p>Implemented automated CI/CD pipeline with GitOps approach, automated testing, and deployment to multiple environments.</p>
+                    </div>
+                    <div class="project-item">
+                        <h3>Monitoring & Observability Stack</h3>
+                        <div class="tech-stack">Prometheus, Grafana, ELK Stack, Jaeger</div>
+                        <p>Set up comprehensive monitoring solution with metrics collection, alerting, log aggregation, and distributed tracing.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Professional Experience</h2>
+                <div class="experience-item">
+                    <h3>Supervisor</h3>
+                    <div class="company">Aadhaar Seva Kendra</div>
+                    <div class="duration">2019 - 2020 (Until COVID-19)</div>
+                    <ul>
+                        <li>Supervised daily operations and managed team workflows</li>
+                        <li>Ensured compliance with government procedures and quality standards</li>
+                        <li>Handled technical troubleshooting and system maintenance</li>
+                        <li>Managed customer service and resolved technical issues</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>Console Operator & Supervisor</h3>
+                    <div class="company">Liberty Service Station</div>
+                    <div class="duration">2009 - 2014 (5 years)</div>
+                    <ul>
+                        <li>Progressed from Console Operator to Supervisor role</li>
+                        <li>Managed fuel station operations and customer service</li>
+                        <li>Handled point-of-sale systems and payment processing</li>
+                        <li>Supervised staff and ensured operational compliance</li>
+                        <li>Maintained accurate records and daily reporting</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Education</h2>
+                <div class="education-item">
+                    <h3>Diploma in Horticulture</h3>
+                    <div class="company">Imperial College of Trades, Australia</div>
+                    <div class="duration">Completed</div>
+                </div>
+                <div class="education-item">
+                    <h3>Intermediate (12th Class)</h3>
+                    <div class="company">Nalanda Junior College, Guntur</div>
+                    <div class="duration">2000 - 2002</div>
+                </div>
+                <div class="education-item">
+                    <h3>Secondary School (10th Class)</h3>
+                    <div class="company">Ramakrishna Vidya Peetam, Kanigiri</div>
+                    <div class="duration">Completed 2000</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Languages</h2>
+                <div class="languages">
+                    <div class="language-item">English - Fluent</div>
+                    <div class="language-item">Telugu - Native</div>
+                    <div class="language-item">Hindi - Conversational</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Additional Information</h2>
+                <ul>
+                    <li><strong>Age:</strong> 40 years - Mature professional with strong work ethic</li>
+                    <li><strong>Passion:</strong> Technology enthusiast with genuine interest in computers and automation</li>
+                    <li><strong>Learning Approach:</strong> Self-directed learner with hands-on project experience</li>
+                    <li><strong>Portfolio:</strong> Live deployment at prash.shop demonstrating real-world skills</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
