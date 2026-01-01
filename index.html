@@ -115,6 +115,7 @@
                 <a href="#project5" class="nav-link">🔧 Project 5: SRE</a>
                 <a href="#project6" class="nav-link">🌐 Project 6: GCP Migration</a>
                 <a href="#project7" class="nav-link">💰 Project 7: Free Hosting</a>
+                <a href="#gcp-experience" class="nav-link">🌩️ GCP Live Experience</a>
             </div>
             
             <div class="nav-section">
@@ -544,6 +545,83 @@
                                 <span class="skill">Strategic Planning</span>
                                 <span class="skill">Risk Mitigation</span>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GCP Real-World Experience Section -->
+                <div class="section" id="gcp-experience">
+                    <h2>🌩️ Real-World GCP Experience</h2>
+                    <p style="margin-bottom: 25px; font-size: 1.1em; color: #555;">Live production deployment using imperative commands - showcasing hands-on cloud expertise beyond YAML configurations.</p>
+                    
+                    <div class="project" style="border-left: 4px solid #4285f4; background: #f8f9ff;">
+                        <div class="project-header">
+                            <div>
+                                <h3>🚀 GCP Production Pipeline - Command-Line Mastery</h3>
+                                <span class="status completed">✅ LIVE DEPLOYMENT</span>
+                            </div>
+                            <a href="https://github.com/venkat3085/GKE-commands" target="_blank" class="github-btn">
+                                <svg width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                                </svg>
+                                Commands Repo
+                            </a>
+                        </div>
+                        <p>Built a complete production deployment on Google Cloud Platform using pure command-line approach. Solved real networking challenges and implemented enterprise-grade autoscaling without any YAML files.</p>
+                        
+                        <div class="achievement">
+                            <h4>🏗️ Phase 1: Image Registry Challenge</h4>
+                            <ul class="steps-list">
+                                <li><strong>Problem:</strong> VPC networking blocked docker push to registry</li>
+                                <li><strong>Solution:</strong> Used gcloud builds submit for internal building</li>
+                                <li><strong>Result:</strong> Bypassed network limitations with cloud-native approach</li>
+                            </ul>
+                        </div>
+
+                        <div class="achievement">
+                            <h4>⚡ Phase 2: Infrastructure Setup</h4>
+                            <ul class="steps-list">
+                                <li>Created GKE cluster with default VPC for internet access</li>
+                                <li>Configured e2-medium nodes with cluster autoscaling (1-10 nodes)</li>
+                                <li>Enabled automatic Google APIs access</li>
+                            </ul>
+                        </div>
+
+                        <div class="achievement">
+                            <h4>🚀 Phase 3: Live Deployment</h4>
+                            <ul class="steps-list">
+                                <li>Deployed using kubectl create deployment (imperative approach)</li>
+                                <li>Exposed via Google Cloud Load Balancer with external IP</li>
+                                <li>Configured resource limits: 100m CPU, 128Mi memory per pod</li>
+                            </ul>
+                        </div>
+
+                        <div class="achievement">
+                            <h4>📈 Phase 4: Production Scaling</h4>
+                            <ul class="steps-list">
+                                <li>Implemented HPA: 60% CPU threshold, scales 2-20 pods</li>
+                                <li>Handles traffic spikes automatically</li>
+                                <li>Cost-efficient: scales down during low usage</li>
+                            </ul>
+                        </div>
+
+                        <div class="achievement" style="background: #e8f5e8; border-left: 3px solid #28a745;">
+                            <h4>🏛️ Architecture Flow</h4>
+                            <p style="font-size: 0.9em; margin: 8px 0; font-style: italic;">
+                                <strong>Source Code → Cloud Build (Chef) → Artifact Registry (Storage) → GKE Cluster (Kitchen) → Load Balancer (Front Door) → Auto-scaler (Smart Manager)</strong>
+                            </p>
+                        </div>
+                        
+                        <div class="skills">
+                            <span class="skill highlight">gcloud CLI</span>
+                            <span class="skill highlight">kubectl</span>
+                            <span class="skill highlight">GKE</span>
+                            <span class="skill highlight">Cloud Build</span>
+                            <span class="skill">Artifact Registry</span>
+                            <span class="skill">Load Balancer</span>
+                            <span class="skill">HPA</span>
+                            <span class="skill">VPC Networking</span>
+                            <span class="skill">Problem Solving</span>
                         </div>
                     </div>
                 </div>
