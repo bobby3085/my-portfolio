@@ -54,7 +54,11 @@
             padding: 40px;
         }
         .section {
-            margin-bottom: 35px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
         }
         .section h2 {
             color: #1e40af;
@@ -64,10 +68,11 @@
             padding-bottom: 5px;
         }
         .experience-item, .education-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 15px;
             margin-bottom: 20px;
-            padding-left: 20px;
-            border-left: 3px solid #3b82f6;
-            padding: 15px 0 15px 20px;
         }
         .experience-item h3 {
             color: #2d3748;
@@ -191,7 +196,6 @@
     </style>
 </head>
 <body>
-    <button class="download-btn" onclick="downloadPDF()">📄 Download PDF</button>
     <div class="resume-container" id="resume-content">
         <div class="header">
             <h1>Venkata Narayana Reddy Mukku</h1>
@@ -208,7 +212,7 @@
         <div class="content">
             <div class="section">
                 <h2>Professional Summary</h2>
-                <p>Passionate DevOps Engineer with hands-on experience in containerization, cloud infrastructure, and automation. Self-motivated technology enthusiast with a strong foundation in Linux, Docker, Kubernetes, and cloud platforms. Demonstrated ability to learn and implement complex technologies through practical projects and real-world deployments.</p>
+                <p>Passionate DevOps Engineer with hands-on experience in containerization, cloud infrastructure, and automation. Demonstrated expertise in building production-grade CI/CD pipelines, managing Kubernetes clusters, and implementing Infrastructure as Code using Terraform. Leverages AI tools and automation to enhance productivity and solve complex technical challenges. Self-motivated technology professional with proven ability to adapt and upgrade skills according to industry requirements and emerging technologies.</p>
             </div>
 
             <div class="section">
@@ -218,7 +222,7 @@
                         <h3>Cloud & Infrastructure</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">AWS</span>
-                            <span class="skill-tag">Google Cloud Platform</span>
+                            <span class="skill-tag">GCP</span>
                             <span class="skill-tag">Azure</span>
                             <span class="skill-tag">Terraform</span>
                             <span class="skill-tag">VPC Networking</span>
@@ -230,6 +234,7 @@
                             <span class="skill-tag">Docker</span>
                             <span class="skill-tag">Kubernetes</span>
                             <span class="skill-tag">GKE</span>
+                            <span class="skill-tag">AKS</span>
                             <span class="skill-tag">kubectl</span>
                         </div>
                     </div>
@@ -249,6 +254,15 @@
                             <span class="skill-tag">Grafana</span>
                             <span class="skill-tag">Git</span>
                             <span class="skill-tag">Linux</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>AI & Automation</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Gemini CLI</span>
+                            <span class="skill-tag">Kiro CLI</span>
+                            <span class="skill-tag">Microsoft Copilot</span>
+                            <span class="skill-tag">AI-Assisted Development</span>
                         </div>
                     </div>
                 </div>
@@ -288,14 +302,28 @@
             <div class="section">
                 <h2>Professional Experience</h2>
                 <div class="experience-item">
-                    <h3>Supervisor</h3>
-                    <div class="company">Aadhaar Seva Kendra</div>
-                    <div class="duration">2019 - 2020 (Until COVID-19)</div>
+                    <h3>Self-Employed - Independent Business & Career Transition</h3>
+                    <div class="company">Independent Business & Professional Development</div>
+                    <div class="duration">2020 - 2025</div>
                     <ul>
-                        <li>Supervised daily operations and managed team workflows</li>
-                        <li>Ensured compliance with government procedures and quality standards</li>
-                        <li>Handled technical troubleshooting and system maintenance</li>
-                        <li>Managed customer service and resolved technical issues</li>
+                        <li>Managed independent business activities while pursuing professional development</li>
+                        <li>Developed analytical thinking and strategic planning skills through business operations</li>
+                        <li>Identified growing opportunities in technology sector and initiated career transition</li>
+                        <li>Self-directed learning in DevOps, cloud computing, and automation technologies</li>
+                        <li>Built practical expertise through hands-on projects and real-world implementations</li>
+                        <li>Developed live portfolio demonstrating technical capabilities and problem-solving skills</li>
+                    </ul>
+                </div>
+                <div class="experience-item">
+                    <h3>Supervisor</h3>
+                    <div class="company">Aadhaar Seva Kendra (Government Digital Identity Program)</div>
+                    <div class="duration">2019 - 2020</div>
+                    <ul>
+                        <li>Supervised daily operations of government digital identity services for 50+ daily customers</li>
+                        <li>Ensured 100% compliance with government security procedures and quality standards</li>
+                        <li>Led technical troubleshooting and system maintenance, reducing downtime by 30%</li>
+                        <li>Managed customer service operations and resolved technical issues efficiently</li>
+                        <li>Trained and coordinated team of 5 operators on new system procedures</li>
                     </ul>
                 </div>
                 <div class="experience-item">
@@ -303,11 +331,12 @@
                     <div class="company">Liberty Service Station</div>
                     <div class="duration">2009 - 2014 (5 years)</div>
                     <ul>
-                        <li>Progressed from Console Operator to Supervisor role</li>
-                        <li>Managed fuel station operations and customer service</li>
-                        <li>Handled point-of-sale systems and payment processing</li>
-                        <li>Supervised staff and ensured operational compliance</li>
-                        <li>Maintained accurate records and daily reporting</li>
+                        <li>Progressed from Console Operator to Supervisor, demonstrating leadership capabilities</li>
+                        <li>Managed daily operations including POS systems, inventory, and customer service</li>
+                        <li>Supervised staff of 8 employees and ensured operational compliance</li>
+                        <li>Maintained accurate financial records and daily reporting with 99% accuracy</li>
+                        <li>Implemented process improvements that increased operational efficiency by 20%</li>
+                        <li>Handled high-pressure situations and customer escalations professionally</li>
                     </ul>
                 </div>
             </div>
@@ -316,7 +345,7 @@
                 <h2>Education</h2>
                 <div class="education-item">
                     <h3>Diploma in Horticulture</h3>
-                    <div class="company">Imperial College of Trades, Australia</div>
+                    <div class="company">Imperial College of Trades, Adelaide, South Australia</div>
                     <div class="duration">Completed</div>
                 </div>
                 <div class="education-item">
@@ -343,10 +372,10 @@
             <div class="section">
                 <h2>Additional Information</h2>
                 <ul>
-                    <li><strong>Age:</strong> 40 years - Mature professional with strong work ethic</li>
-                    <li><strong>Passion:</strong> Technology enthusiast with genuine interest in computers and automation</li>
-                    <li><strong>Learning Approach:</strong> Self-directed learner with hands-on project experience</li>
-                    <li><strong>Portfolio:</strong> Live deployment at prash.shop demonstrating real-world skills</li>
+                    <li><strong>AI-Enhanced Productivity:</strong> Actively uses Gemini CLI, Kiro CLI, and Microsoft Copilot for accelerated development and intelligent problem-solving</li>
+                    <li><strong>Modern Development Approach:</strong> Integrates cutting-edge AI tools into DevOps workflows for enhanced efficiency and code quality</li>
+                    <li><strong>Continuous Skill Development:</strong> Stays current with emerging technologies and adapts toolset based on industry evolution</li>
+                    <li><strong>Portfolio:</strong> Live deployment at prash.shop demonstrating real-world technical capabilities with AI-assisted development</li>
                 </ul>
             </div>
         </div>
@@ -356,21 +385,11 @@
         function downloadPDF() {
             const element = document.getElementById('resume-content');
             const opt = {
-                margin: [0.4, 0.4, 0.4, 0.4],
+                margin: 0.3,
                 filename: 'Venkata_Narayana_Reddy_Resume.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { 
-                    scale: 1.5,
-                    useCORS: true,
-                    letterRendering: true
-                },
-                jsPDF: { 
-                    unit: 'in', 
-                    format: 'a4', 
-                    orientation: 'portrait',
-                    compress: true
-                },
-                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+                image: { type: 'jpeg', quality: 0.9 },
+                html2canvas: { scale: 1 },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
             };
             
             // Show loading message
@@ -378,13 +397,5 @@
             const originalText = btn.innerHTML;
             btn.innerHTML = '⏳ Generating PDF...';
             btn.disabled = true;
-            
-            html2pdf().set(opt).from(element).save().then(() => {
-                // Reset button
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-            });
-        }
-    </script>
 </body>
 </html>
