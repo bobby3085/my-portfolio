@@ -15,7 +15,7 @@
             padding: 20px;
         }
         .resume-container {
-            max-width: 800px;
+            max-width: 750px;
             margin: 0 auto;
             background: white;
             box-shadow: 0 0 20px rgba(0,0,0,0.1);
@@ -159,9 +159,15 @@
             .header { padding: 30px 20px; }
         }
         @media print {
-            body { background: white; padding: 0; }
-            .resume-container { box-shadow: none; }
+            body { background: white; padding: 0; margin: 0; }
+            .resume-container { box-shadow: none; margin: 0; }
             .download-btn { display: none; }
+            .header { margin-bottom: 20px; padding: 30px 20px; }
+            .content { padding: 20px; }
+            .section { margin-bottom: 25px; page-break-inside: avoid; }
+            .experience-item, .education-item { page-break-inside: avoid; }
+            .projects { page-break-inside: avoid; }
+            .project-item { margin-bottom: 10px; padding-bottom: 10px; }
         }
         .download-btn {
             position: fixed;
@@ -350,11 +356,21 @@
         function downloadPDF() {
             const element = document.getElementById('resume-content');
             const opt = {
-                margin: 0.5,
+                margin: [0.4, 0.4, 0.4, 0.4],
                 filename: 'Venkata_Narayana_Reddy_Resume.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+                html2canvas: { 
+                    scale: 1.5,
+                    useCORS: true,
+                    letterRendering: true
+                },
+                jsPDF: { 
+                    unit: 'in', 
+                    format: 'a4', 
+                    orientation: 'portrait',
+                    compress: true
+                },
+                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
             };
             
             // Show loading message
