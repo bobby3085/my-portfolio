@@ -303,28 +303,23 @@
         .infra-grid { 
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
-            gap: 20px; 
+            gap: 12px 40px; 
             margin-top: 25px;
         }
         
         .infra-item { 
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--glass-border);
-            padding: 15px;
-            border-radius: 12px;
-            font-size: 0.85em;
+            font-size: 0.9em;
             color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
+            display: list-item;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            line-height: 1.5;
+            transition: color 0.2s;
         }
         
         .infra-item:hover {
-            background: rgba(6, 182, 212, 0.05);
-            border-color: var(--neon-cyan);
-            color: #fff;
-            transform: translateY(-3px);
+            color: var(--neon-cyan);
         }
 
         .achievement {
@@ -860,9 +855,9 @@
                             </ul>
                         </div>
 
-                        <div class="achievement" style="background: #e8f5e8; border-left: 3px solid #28a745;">
+                        <div class="achievement" style="border-left: 3px solid #28a745; background: rgba(40, 167, 69, 0.05);">
                             <h4>🏛️ Architecture Flow</h4>
-                            <p style="font-size: 0.9em; margin: 8px 0; font-style: italic;">
+                            <p style="font-size: 0.9em; margin: 8px 0; font-style: italic; color: var(--text-muted);">
                                 <strong>Source Code → Cloud Build (Chef) → Artifact Registry (Storage) → GKE Cluster (Kitchen) → Load Balancer (Front Door) → Auto-scaler (Smart Manager)</strong>
                             </p>
                         </div>
