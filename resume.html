@@ -220,7 +220,119 @@
     </style>
 </head>
 <body>
-    <button class="download-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+    <!-- PDF Buttons -->
+    <div style="position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 1000;">
+        <button class="download-btn" onclick="generatePDF('preview')" style="position: static;">👁️ Preview PDF</button>
+        <button class="download-btn" onclick="generatePDF('download')" style="position: static;">📄 Download PDF</button>
+    </div>
+
+    <script>
+        async function generatePDF(action) {
+            const element = document.getElementById('resume-content');
+            const buttons = document.querySelector('.download-btn').parentElement;
+            
+            // 1. Force styling for print (White Theme)
+            // We clone the element to avoid flickering the real page
+            const clone = element.cloneNode(true);
+            clone.style.width = '210mm'; // A4 width
+            clone.style.minHeight = '297mm'; // A4 height
+            clone.style.padding = '15mm';
+            clone.style.background = 'white';
+            clone.style.color = 'black';
+            clone.style.position = 'fixed';
+            clone.style.top = '-10000px';
+            clone.style.left = '-10000px';
+            clone.style.zIndex = '-1';
+            
+            // Fix header styles in clone
+            const header = clone.querySelector('.header');
+            header.style.background = 'white';
+            header.style.color = 'black';
+            header.style.borderBottom = '2px solid #333';
+            header.querySelector('h1').style.webkitTextFillColor = 'black';
+            header.querySelector('.title').style.color = '#2563eb';
+            
+            // Fix text colors in clone
+            clone.querySelectorAll('.section h2').forEach(h2 => {
+                h2.style.color = '#2563eb';
+                h2.style.borderBottom = '1px solid #ddd';
+            });
+            clone.querySelectorAll('.experience-item, .project-item').forEach(item => {
+                item.style.background = 'white';
+                item.style.border = 'none';
+                item.style.borderLeft = '3px solid #ddd';
+                item.style.color = 'black';
+            });
+            clone.querySelectorAll('h3').forEach(h3 => h3.style.color = 'black');
+            clone.querySelectorAll('.tech-stack').forEach(ts => ts.style.color = '#2563eb');
+            clone.querySelectorAll('.skill-tag').forEach(tag => {
+                tag.style.background = 'white';
+                tag.style.color = 'black';
+                tag.style.border = '1px solid #ccc';
+            });
+            
+            document.body.appendChild(clone);
+            
+            // Hide buttons temporarily
+            buttons.style.display = 'none';
+
+            try {
+                console.log('Generating PDF...');
+                
+                // 2. Generate Canvas with high scale
+                const canvas = await html2canvas(clone, {
+                    scale: 2, // Retinas resolution
+                    useCORS: true,
+                    backgroundColor: '#ffffff',
+                    logging: false
+                });
+
+                // 3. Create PDF
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('p', 'mm', 'a4');
+                
+                const imgWidth = 210; // A4 width in mm
+                const pageHeight = 297; // A4 height in mm
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+                
+                let heightLeft = imgHeight;
+                let position = 0;
+                const imgData = canvas.toDataURL('image/jpeg', 0.95); // High quality JPEG
+
+                // Add first page
+                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+                heightLeft -= pageHeight;
+
+                // Add subsequent pages if needed
+                while (heightLeft > 0) {
+                    position = heightLeft - imgHeight; // Align correctly
+                    pdf.addPage();
+                    pdf.addImage(imgData, 'JPEG', 0, -297 + heightLeft, imgWidth, imgHeight); // Adjust overlap
+                     // Simplified multi-page logic often needs tuning, 
+                     // but for 1-2 pages this standard approach usually works.
+                     heightLeft -= pageHeight;
+                }
+
+                if (action === 'preview') {
+                    // Open in new tab
+                    const blob = pdf.output('blob');
+                    const url = URL.createObjectURL(blob);
+                    window.open(url, '_blank');
+                } else {
+                    // Download
+                    pdf.save('Venkata_Narayana_Reddy_Resume.pdf');
+                }
+
+            } catch (err) {
+                console.error("PDF Error:", err);
+                alert("Error generating PDF. Please use browser 'Print to PDF' for best results.");
+            } finally {
+                // Cleanup
+                document.body.removeChild(clone);
+                buttons.style.display = 'flex';
+            }
+        }
+    </script>
 
     <div class="resume-container" id="resume-content">
         <div class="header">
