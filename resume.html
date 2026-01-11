@@ -183,156 +183,118 @@
             transform: translateY(-2px);
         }
 
-        /* PRINT STYLES - Force White Theme */
+        /* PRINT STYLES - Professional White Theme */
         @media print {
-            body { background: white; color: black; padding: 0; }
+            @page { margin: 1cm; size: A4; }
+            body { 
+                background: white !important; 
+                color: black !important; 
+                padding: 0 !important; 
+                margin: 0 !important;
+                font-family: 'Arial', sans-serif !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
             .resume-container { 
-                box-shadow: none; border: none; margin: 0; padding: 0; 
-                background: white; max-width: 100%;
+                box-shadow: none !important; 
+                border: none !important; 
+                margin: 0 !important; 
+                padding: 0 !important; 
+                background: white !important; 
+                max-width: 100% !important;
+                border-radius: 0 !important;
             }
-            .header { background: white; color: black; padding: 20px 0; border-bottom: 2px solid #333; }
+            .header { 
+                background: white !important; 
+                color: black !important; 
+                padding: 20px 0 !important; 
+                border-bottom: 2px solid #000 !important; 
+                text-align: left !important;
+            }
             .header h1 { 
-                background: none; -webkit-text-fill-color: black; color: black; 
-                font-size: 24pt; 
+                background: none !important; 
+                -webkit-text-fill-color: black !important; 
+                color: black !important; 
+                font-size: 24pt !important; 
+                margin-bottom: 5px !important;
             }
-            .header .title { color: #2563eb; font-size: 14pt; }
-            .contact-info { color: #444; }
+            .header .title { 
+                color: #2563eb !important; 
+                font-size: 14pt !important; 
+                margin-bottom: 15px !important;
+            }
+            .contact-info { 
+                justify-content: flex-start !important; 
+                color: #444 !important; 
+            }
+            
+            .content { padding: 20px 0 !important; }
+            
+            .section { 
+                margin-bottom: 25px !important; 
+                break-inside: avoid; 
+            }
             .section h2 { 
-                color: #2563eb; border-bottom: 2px solid #ddd; 
-                font-size: 16pt;
+                color: #2563eb !important; 
+                border-bottom: 1px solid #ccc !important; 
+                font-size: 16pt !important;
+                padding-bottom: 5px !important;
+                margin-bottom: 15px !important;
             }
-            .section h2::before { display: none; }
+            .section h2::before { display: none !important; }
+            
+            /* Avoid splitting items across pages */
             .experience-item, .project-item {
-                background: white; border: none; border-left: 3px solid #ddd;
-                padding: 10px 0 10px 15px; margin-bottom: 15px;
-                page-break-inside: avoid;
+                background: white !important; 
+                border: none !important; 
+                border-left: 3px solid #ccc !important;
+                padding: 5px 0 5px 15px !important; 
+                margin-bottom: 15px !important;
+                break-inside: avoid !important;
+                page-break-inside: avoid !important;
+                border-radius: 0 !important;
             }
-            .experience-item h3, .project-item h3 { color: black; font-size: 12pt; }
-            .experience-item .company { color: #444; }
-            .experience-item .duration { color: #666; }
+            
+            .experience-item:hover, .project-item:hover { 
+                background: none !important; 
+                border-color: #ccc !important; 
+            }
+            
+            .experience-item h3, .project-item h3 { 
+                color: black !important; 
+                font-size: 12pt !important; 
+            }
+            
+            .project-item .tech-stack { color: #666 !important; font-style: italic !important; }
+            .experience-item .duration { color: #666 !important; }
+            
             .skill-tag { 
-                border: 1px solid #ccc; background: white; color: black; 
+                border: 1px solid #999 !important; 
+                background: white !important; 
+                color: black !important; 
+                padding: 2px 8px !important;
             }
-            .project-item .tech-stack { color: #2563eb; }
-            .download-btn { display: none; }
-            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            
+            .download-btn { display: none !important; }
+            
+            /* Text colors */
+            p, li { color: #333 !important; }
+            .company { color: #444 !important; }
         }
     </style>
 </head>
 <body>
-    <!-- PDF Buttons -->
-    <div style="position: fixed; top: 20px; right: 20px; display: flex; gap: 10px; z-index: 1000;">
-        <button class="download-btn" onclick="generatePDF('preview')" style="position: static;">👁️ Preview PDF</button>
-        <button class="download-btn" onclick="generatePDF('download')" style="position: static;">📄 Download PDF</button>
+    <!-- PDF Button -->
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
+        <button class="download-btn" onclick="window.print()">🖨️ Save as PDF</button>
     </div>
 
     <script>
-        async function generatePDF(action) {
-            const element = document.getElementById('resume-content');
-            const buttons = document.querySelector('.download-btn').parentElement;
-            
-            // 1. Force styling for print (White Theme)
-            // We clone the element to avoid flickering the real page
-            const clone = element.cloneNode(true);
-            clone.style.width = '210mm'; // A4 width
-            clone.style.minHeight = '297mm'; // A4 height
-            clone.style.padding = '15mm';
-            clone.style.background = 'white';
-            clone.style.color = 'black';
-            clone.style.position = 'fixed';
-            clone.style.top = '-10000px';
-            clone.style.left = '-10000px';
-            clone.style.zIndex = '-1';
-            
-            // Fix header styles in clone
-            const header = clone.querySelector('.header');
-            header.style.background = 'white';
-            header.style.color = 'black';
-            header.style.borderBottom = '2px solid #333';
-            header.querySelector('h1').style.webkitTextFillColor = 'black';
-            header.querySelector('.title').style.color = '#2563eb';
-            
-            // Fix text colors in clone
-            clone.querySelectorAll('.section h2').forEach(h2 => {
-                h2.style.color = '#2563eb';
-                h2.style.borderBottom = '1px solid #ddd';
-            });
-            clone.querySelectorAll('.experience-item, .project-item').forEach(item => {
-                item.style.background = 'white';
-                item.style.border = 'none';
-                item.style.borderLeft = '3px solid #ddd';
-                item.style.color = 'black';
-            });
-            clone.querySelectorAll('h3').forEach(h3 => h3.style.color = 'black');
-            clone.querySelectorAll('.tech-stack').forEach(ts => ts.style.color = '#2563eb');
-            clone.querySelectorAll('.skill-tag').forEach(tag => {
-                tag.style.background = 'white';
-                tag.style.color = 'black';
-                tag.style.border = '1px solid #ccc';
-            });
-            
-            document.body.appendChild(clone);
-            
-            // Hide buttons temporarily
-            buttons.style.display = 'none';
-
-            try {
-                console.log('Generating PDF...');
-                
-                // 2. Generate Canvas with high scale
-                const canvas = await html2canvas(clone, {
-                    scale: 2, // Retinas resolution
-                    useCORS: true,
-                    backgroundColor: '#ffffff',
-                    logging: false
-                });
-
-                // 3. Create PDF
-                const { jsPDF } = window.jspdf;
-                const pdf = new jsPDF('p', 'mm', 'a4');
-                
-                const imgWidth = 210; // A4 width in mm
-                const pageHeight = 297; // A4 height in mm
-                const imgHeight = (canvas.height * imgWidth) / canvas.width;
-                
-                let heightLeft = imgHeight;
-                let position = 0;
-                const imgData = canvas.toDataURL('image/jpeg', 0.95); // High quality JPEG
-
-                // Add first page
-                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
-
-                // Add subsequent pages if needed
-                while (heightLeft > 0) {
-                    position = heightLeft - imgHeight; // Align correctly
-                    pdf.addPage();
-                    pdf.addImage(imgData, 'JPEG', 0, -297 + heightLeft, imgWidth, imgHeight); // Adjust overlap
-                     // Simplified multi-page logic often needs tuning, 
-                     // but for 1-2 pages this standard approach usually works.
-                     heightLeft -= pageHeight;
-                }
-
-                if (action === 'preview') {
-                    // Open in new tab
-                    const blob = pdf.output('blob');
-                    const url = URL.createObjectURL(blob);
-                    window.open(url, '_blank');
-                } else {
-                    // Download
-                    pdf.save('Venkata_Narayana_Reddy_Resume.pdf');
-                }
-
-            } catch (err) {
-                console.error("PDF Error:", err);
-                alert("Error generating PDF. Please use browser 'Print to PDF' for best results.");
-            } finally {
-                // Cleanup
-                document.body.removeChild(clone);
-                buttons.style.display = 'flex';
-            }
-        }
+        // No complex JS needed. The browser's native print engine is superior.
+        // The @media print CSS handles the styling.
     </script>
+</body>
+</html>
 
     <div class="resume-container" id="resume-content">
         <div class="header">
