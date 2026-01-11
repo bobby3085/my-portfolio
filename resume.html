@@ -3,270 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Venkata Narayana Reddy Mukku - DevOps Engineer Resume</title>
+    <title>Venkata Narayana Reddy - AI-Assisted Builder</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: 'Arial', sans-serif; 
-            line-height: 1.6; 
-            color: #333; 
-            background: white;
-            padding: 20px;
-            margin: 0;
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap');
+
+        :root {
+            --bg-dark: #030712;
+            --glass-panel: rgba(17, 24, 39, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --neon-cyan: #06b6d4;
+            --neon-purple: #8b5cf6;
+            --neon-amber: #f59e0b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            line-height: 1.6; 
+            color: var(--text-main); 
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.15), transparent 25%), 
+                radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.15), transparent 25%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
         .resume-container {
-            max-width: 750px;
+            max-width: 900px;
             margin: 0 auto;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 12px;
+            background: rgba(3, 7, 18, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
             padding: 0;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
         }
+
         .header {
-            background: linear-gradient(135deg, #2563eb, #60a5fa, #3b82f6);
-            color: white;
-            padding: 40px;
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.1) 0%, rgba(3, 7, 18, 0) 100%);
+            padding: 60px 40px;
             text-align: center;
-            border-radius: 0 0 20px 20px;
-            position: relative;
-            overflow: hidden;
+            border-bottom: 1px solid var(--glass-border);
         }
-        .header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            z-index: 0;
-        }
-        .header > * {
-            position: relative;
-            z-index: 1;
-        }
+
         .header h1 {
-            font-size: 2.5em;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3em;
             margin-bottom: 10px;
-            font-weight: bold;
+            font-weight: 700;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+
         .header .title {
-            font-size: 1.3em;
-            margin-bottom: 20px;
-            opacity: 0.9;
+            font-size: 1.5em;
+            color: var(--neon-cyan);
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
+
         .contact-info {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 25px;
             flex-wrap: wrap;
-            font-size: 0.9em;
+            font-size: 0.95em;
+            color: var(--text-muted);
         }
+
         .contact-info div {
             display: flex;
             align-items: center;
-            gap: 5px;
-        }
-        .content {
-            padding: 30px;
-        }
-        .section {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            padding: 18px;
-            margin-bottom: 20px;
-        }
-        .section h2 {
-            color: #1e40af;
-            font-size: 1.3em;
-            margin-bottom: 12px;
-            border-bottom: 2px solid #3b82f6;
-            padding-bottom: 4px;
-        }
-        .experience-item, .education-item {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 15px;
-        }
-        .experience-item h3 {
-            color: #2d3748;
-            font-size: 1.1em;
-            margin-bottom: 5px;
-        }
-        .experience-item .company {
-            color: #1e40af;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .experience-item .duration {
-            color: #666;
-            font-size: 0.9em;
-            margin-bottom: 10px;
-        }
-        .experience-item ul {
-            margin-left: 20px;
-        }
-        .experience-item li {
-            margin-bottom: 5px;
-            color: #4a5568;
-        }
-        .skills-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .skill-category h3 {
-            color: #1e40af;
-            margin-bottom: 10px;
-            font-size: 1em;
-        }
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
             gap: 8px;
         }
-        .skill-tag {
-            background: #3b82f6;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.8em;
-            font-weight: 500;
+
+        .content { padding: 40px; }
+
+        .section {
+            margin-bottom: 40px;
+            position: relative;
         }
-        .projects {
-            background: #f8f9ff;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
-        }
-        .project-item {
-            margin-bottom: 12px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .project-item:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-        .project-item h3 {
-            color: #1e40af;
-            margin-bottom: 5px;
-        }
-        .project-item .tech-stack {
-            color: #666;
-            font-size: 0.9em;
-            font-style: italic;
-            margin-bottom: 5px;
-        }
-        .languages {
+
+        .section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+            font-size: 1.5em;
+            margin-bottom: 20px;
             display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 10px;
+        }
+
+        .section h2::before { content: '//'; color: var(--neon-purple); }
+
+        .experience-item, .project-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .experience-item:hover, .project-item:hover {
+            border-color: var(--neon-cyan);
+            background: rgba(6, 182, 212, 0.05);
+        }
+
+        .experience-item h3, .project-item h3 {
+            color: #fff;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .experience-item .company { color: var(--neon-cyan); font-weight: 600; margin-bottom: 5px; }
+        .experience-item .duration { color: var(--text-muted); font-size: 0.9em; margin-bottom: 15px; font-style: italic; }
+        
+        .experience-item ul, .section > ul { margin-left: 20px; color: var(--text-muted); }
+        .experience-item li, .section > ul li { margin-bottom: 8px; }
+        .experience-item li::marker, .section > ul li::marker { color: var(--neon-amber); }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
-            flex-wrap: wrap;
         }
-        .language-item {
-            background: #e2e8f0;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            color: #2d3748;
+
+        .skill-category h3 { color: var(--neon-cyan); margin-bottom: 10px; font-size: 1em; }
+
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        .skill-tag {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--text-main);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
         }
-        @media (max-width: 768px) {
-            .contact-info { flex-direction: column; gap: 10px; }
-            .skills-grid { grid-template-columns: 1fr; }
-            .content { padding: 20px; }
-            .header { padding: 30px 20px; }
+
+        .project-item .tech-stack {
+            color: var(--neon-purple);
+            font-size: 0.85em;
+            margin-bottom: 10px;
+            font-family: 'Space Mono', monospace;
         }
-        @media print {
-            body { background: white; padding: 0; margin: 0; }
-            .resume-container { box-shadow: none; margin: 0; border: none; }
-            .download-btn { display: none !important; }
-            .header { 
-                margin-bottom: 15px; 
-                padding: 25px 20px; 
-                background: #2563eb !important;
-                border-radius: 0 !important;
-                -webkit-print-color-adjust: exact;
-                color-adjust: exact;
-            }
-            .header::before { display: none; }
-            .content { padding: 12px; }
-            .section { 
-                margin-bottom: 15px; 
-                page-break-inside: avoid;
-                padding: 12px;
-            }
-            ul, li { 
-                page-break-inside: avoid !important; 
-            }
-            .page-break-helper { display: none; }
-            @media print {
-                .page-break-helper { 
-                    display: block !important; 
-                    page-break-before: always !important;
-                    height: 0 !important;
-                    margin: 0 !important;
-                    padding: 0 !important;
-                }
-            }
-            .experience-item, .education-item { 
-                page-break-inside: avoid;
-                margin-bottom: 10px;
-                padding: 10px;
-            }
-            .projects { 
-                page-break-inside: avoid;
-                padding: 12px;
-            }
-            .project-item { 
-                margin-bottom: 6px; 
-                padding-bottom: 6px; 
-            }
-            .skill-tag {
-                background: #3b82f6 !important;
-                -webkit-print-color-adjust: exact;
-                color-adjust: exact;
-            }
-            h1, h2, h3 { page-break-after: avoid; }
-            * { -webkit-print-color-adjust: exact; color-adjust: exact; }
-        }
+        
+        .project-item p { color: var(--text-muted); font-size: 0.95em; }
+
         .download-btn {
             position: fixed;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #1e40af, #3b82f6);
-            color: white;
+            top: 20px; right: 20px;
+            background: var(--neon-cyan);
+            color: #000;
             border: none;
             padding: 12px 24px;
-            border-radius: 25px;
+            border-radius: 8px;
             cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+            font-weight: 700;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);
             transition: all 0.3s ease;
             z-index: 1000;
-            min-width: 180px;
-            text-align: center;
         }
+
         .download-btn:hover {
+            box-shadow: 0 0 25px rgba(6, 182, 212, 0.5);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+        }
+
+        /* PRINT STYLES - Force White Theme */
+        @media print {
+            body { background: white; color: black; padding: 0; }
+            .resume-container { 
+                box-shadow: none; border: none; margin: 0; padding: 0; 
+                background: white; max-width: 100%;
+            }
+            .header { background: white; color: black; padding: 20px 0; border-bottom: 2px solid #333; }
+            .header h1 { 
+                background: none; -webkit-text-fill-color: black; color: black; 
+                font-size: 24pt; 
+            }
+            .header .title { color: #2563eb; font-size: 14pt; }
+            .contact-info { color: #444; }
+            .section h2 { 
+                color: #2563eb; border-bottom: 2px solid #ddd; 
+                font-size: 16pt;
+            }
+            .section h2::before { display: none; }
+            .experience-item, .project-item {
+                background: white; border: none; border-left: 3px solid #ddd;
+                padding: 10px 0 10px 15px; margin-bottom: 15px;
+                page-break-inside: avoid;
+            }
+            .experience-item h3, .project-item h3 { color: black; font-size: 12pt; }
+            .experience-item .company { color: #444; }
+            .experience-item .duration { color: #666; }
+            .skill-tag { 
+                border: 1px solid #ccc; background: white; color: black; 
+            }
+            .project-item .tech-stack { color: #2563eb; }
+            .download-btn { display: none; }
+            * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
     </style>
 </head>
 <body>
+    <button class="download-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+
     <div class="resume-container" id="resume-content">
         <div class="header">
             <h1>Venkata Narayana Reddy Mukku</h1>
-            <div class="title">DevOps Engineer | Cloud Infrastructure</div>
+            <div class="title">AI-Assisted Builder & Learner</div>
             <div class="contact-info">
                 <div>📧 venkat3085@zohomail.in</div>
                 <div>🌐 prash.shop</div>
@@ -278,317 +237,130 @@
         <div class="content">
             <div class="section">
                 <h2>Professional Summary</h2>
-                <p>Passionate DevOps Engineer with hands-on experience in containerization, cloud infrastructure, and automation. Demonstrated expertise in building production-grade CI/CD pipelines, managing Kubernetes clusters, and implementing Infrastructure as Code using Terraform. Leverages AI tools and automation to enhance productivity and solve complex technical challenges. Quick learner who adapts rapidly to new tools and technologies based on project requirements. Self-motivated technology professional with proven ability to continuously upgrade skills according to industry requirements and emerging technologies.</p>
+                <p style="color: var(--text-muted);">
+                    Curious learner and builder leveraging Artificial Intelligence to architect and deploy sophisticated systems. While not a traditional DevOps engineer, I use Large Language Models (LLMs) to bridge the gap between complex ideas and production-ready reality. Successfully built and deployed Kubernetes clusters, algorithmic trading dashboards, and cloud infrastructure by orchestrating AI tools. Proven ability to learn rapidly and deliver enterprise-grade results through AI-assisted development.
+                </p>
             </div>
 
             <div class="section">
                 <h2>Technical Skills</h2>
                 <div class="skills-grid">
                     <div class="skill-category">
+                        <h3>AI & Development</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Prompt Engineering</span>
+                            <span class="skill-tag">LLM Integration</span>
+                            <span class="skill-tag">AI-Assisted Coding</span>
+                            <span class="skill-tag">Gemini CLI</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
                         <h3>Cloud & Infrastructure</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">AWS</span>
-                            <span class="skill-tag">GCP</span>
-                            <span class="skill-tag">Azure</span>
+                            <span class="skill-tag">Google Cloud (GCP)</span>
                             <span class="skill-tag">Terraform</span>
                             <span class="skill-tag">VPC Networking</span>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>Containerization & Orchestration</h3>
+                        <h3>Containerization</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">Docker</span>
                             <span class="skill-tag">Kubernetes</span>
                             <span class="skill-tag">GKE</span>
-                            <span class="skill-tag">EKS</span>
-                            <span class="skill-tag">ECS</span>
-                            <span class="skill-tag">AKS</span>
                             <span class="skill-tag">kubectl</span>
                         </div>
                     </div>
                     <div class="skill-category">
-                        <h3>CI/CD & Automation</h3>
+                        <h3>CI/CD & Tools</h3>
                         <div class="skill-tags">
                             <span class="skill-tag">GitHub Actions</span>
                             <span class="skill-tag">ArgoCD</span>
-                            <span class="skill-tag">Cloud Build</span>
-                            <span class="skill-tag">Shell Scripting</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>Monitoring & Tools</h3>
-                        <div class="skill-tags">
                             <span class="skill-tag">Prometheus</span>
                             <span class="skill-tag">Grafana</span>
-                            <span class="skill-tag">Git</span>
-                            <span class="skill-tag">Linux</span>
-                        </div>
-                    </div>
-                    <div class="skill-category">
-                        <h3>AI & Automation</h3>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Gemini CLI</span>
-                            <span class="skill-tag">Kiro CLI</span>
-                            <span class="skill-tag">Microsoft Copilot</span>
-                            <span class="skill-tag">AI-Assisted Development</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="section" style="margin-bottom: 30px;">
-                <h2>DevOps Projects Portfolio</h2>
-                <div class="projects">
-                    <div class="project-item">
-                        <h3>Production GCP Deployment Pipeline</h3>
-                        <div class="tech-stack">GKE, Cloud Build, Artifact Registry, Load Balancer, HPA</div>
-                        <p>Built complete production deployment on Google Cloud Platform using imperative commands. Solved VPC networking challenges and implemented enterprise-grade autoscaling (2-20 pods based on CPU usage).</p>
-                    </div>
-                    <div class="project-item">
-                        <h3>Container Orchestration with Kubernetes</h3>
-                        <div class="tech-stack">Docker, Kubernetes, Minikube, YAML Manifests</div>
-                        <p>Developed containerized portfolio application with 2-replica deployment, horizontal pod autoscaling, and zero-downtime rolling updates.</p>
-                    </div>
-                    <div class="project-item">
-                        <h3>Infrastructure as Code with Terraform</h3>
-                        <div class="tech-stack">Terraform, AWS, VPC, EC2, S3, IAM</div>
-                        <p>Automated AWS infrastructure provisioning including VPC setup, security groups, EC2 instances, and S3 buckets with proper IAM policies.</p>
-                    </div>
-                    <div class="project-item">
-                        <h3>CI/CD Pipeline Implementation</h3>
-                        <div class="tech-stack">GitHub Actions, ArgoCD, DockerHub, GitOps</div>
-                        <p>Implemented automated CI/CD pipeline with GitOps approach, automated testing, and deployment to multiple environments.</p>
-                    </div>
-                    <div class="project-item">
-                        <h3>Monitoring & Observability Stack</h3>
-                        <div class="tech-stack">Prometheus, Grafana, ELK Stack, Jaeger</div>
-                        <p>Set up comprehensive monitoring solution with metrics collection, alerting, log aggregation, and distributed tracing.</p>
-                    </div>
+            <div class="section">
+                <h2>Projects Portfolio</h2>
+                <div class="project-item">
+                    <h3>Production GCP Deployment Pipeline</h3>
+                    <div class="tech-stack">GKE • Cloud Build • Artifact Registry • HPA</div>
+                    <p>Built a complete production deployment on Google Cloud Platform using imperative commands. Solved VPC networking challenges and implemented enterprise-grade autoscaling (2-20 pods) without writing manual YAML, utilizing AI to generate optimal configurations.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Nifty Trading Dashboard</h3>
+                    <div class="tech-stack">Python • Flask • Algorithmic Trading • AI Logic</div>
+                    <p>Developed an automated trading dashboard that analyzes market data. Leveraged AI to write complex trading logic and backtesting engines, demonstrating the ability to build domain-specific software rapidly.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Container Orchestration System</h3>
+                    <div class="tech-stack">Docker • Kubernetes • Minikube</div>
+                    <p>Containerized portfolio application with 2-replica deployment, horizontal pod autoscaling, and zero-downtime rolling updates. Used AI to troubleshoot and optimize resource limits.</p>
+                </div>
+                <div class="project-item">
+                    <h3>Infrastructure as Code</h3>
+                    <div class="tech-stack">Terraform • AWS • IAM • S3</div>
+                    <p>Automated AWS infrastructure provisioning including VPC setup and security groups. Used AI to generate Terraform modules and validate security best practices.</p>
                 </div>
             </div>
 
             <div class="section">
                 <h2>Key Achievements</h2>
                 <ul>
-                    <li>Successfully deployed production-grade applications on multiple cloud platforms</li>
-                    <li>Implemented automated CI/CD pipelines reducing deployment time by 70%</li>
-                    <li>Built scalable infrastructure supporting 2-20 pod autoscaling</li>
-                    <li>Solved complex VPC networking challenges in enterprise cloud environments</li>
+                    <li><strong>Rapid Prototyping:</strong> Built and deployed 7+ complex DevOps projects in record time using AI assistance.</li>
+                    <li><strong>Cost Optimization:</strong> Migrated infrastructure to free tiers (Vercel) achieving 90% cost reduction.</li>
+                    <li><strong>Self-Directed Learning:</strong> Mastered Kubernetes and Cloud Architecture through hands-on building and AI-guided study.</li>
                 </ul>
             </div>
 
-            <div style="page-break-before: always; height: 0; visibility: hidden;" class="page-break-helper"></div>
-
-            <div class="section" style="page-break-inside: avoid;">
-                <h2 style="page-break-after: avoid;">Professional Experience</h2>
-                <div class="experience-item" style="page-break-inside: avoid;">
-                    <h3 style="page-break-after: avoid;">Self-Employed - Independent Business & Career Transition</h3>
-                    <div class="company">Independent Business & Professional Development</div>
-                    <div class="duration">2020 - 2025</div>
-                    <ul style="page-break-inside: avoid;">
-                        <li style="page-break-inside: avoid;">Managed independent business activities while pursuing professional development</li>
-                        <li style="page-break-inside: avoid;">Developed analytical thinking and strategic planning skills through business operations</li>
-                        <li style="page-break-inside: avoid;">Identified growing opportunities in technology sector and initiated career transition</li>
-                        <li style="page-break-inside: avoid;">Self-directed learning in DevOps, cloud computing, and automation technologies</li>
-                        <li style="page-break-inside: avoid;">Built practical expertise through hands-on projects and real-world implementations</li>
+            <div class="section">
+                <h2>Professional Experience</h2>
+                <div class="experience-item">
+                    <h3>Independent Builder & Learner</h3>
+                    <div class="company">Self-Employed</div>
+                    <div class="duration">2020 - Present</div>
+                    <ul>
+                        <li>Managed independent business activities while pursuing intensive technical development.</li>
+                        <li>Identified opportunities in the technology sector and transitioned to building software systems.</li>
+                        <li>Self-directed learning in DevOps, cloud computing, and automation technologies.</li>
                     </ul>
                 </div>
-                <div class="experience-item" style="page-break-inside: avoid;">
-                    <h3 style="page-break-after: avoid;">Supervisor</h3>
-                    <div class="company">Aadhaar Seva Kendra (Government Digital Identity Program)</div>
+                <div class="experience-item">
+                    <h3>Supervisor</h3>
+                    <div class="company">Aadhaar Seva Kendra (Government Identity Program)</div>
                     <div class="duration">2019 - 2020</div>
                     <ul>
-                        <li>Supervised daily operations of government digital identity services for 50+ daily customers</li>
-                        <li>Ensured 100% compliance with government security procedures and quality standards</li>
-                        <li>Led technical troubleshooting and system maintenance, reducing downtime by 30%</li>
-                        <li>Trained and coordinated team of 5 operators on new system procedures</li>
+                        <li>Supervised daily operations for 50+ daily customers with 100% compliance.</li>
+                        <li>Led technical troubleshooting and system maintenance.</li>
                     </ul>
                 </div>
-                <div class="experience-item" style="page-break-inside: avoid;">
-                    <h3 style="page-break-after: avoid;">Console Operator & Supervisor</h3>
+                <div class="experience-item">
+                    <h3>Console Operator & Supervisor</h3>
                     <div class="company">Liberty Service Station</div>
-                    <div class="duration">2009 - 2014 (5 years)</div>
+                    <div class="duration">2009 - 2014</div>
                     <ul>
-                        <li>Progressed from Console Operator to Supervisor, demonstrating leadership capabilities</li>
-                        <li>Managed daily operations including POS systems, inventory, and customer service</li>
-                        <li>Supervised staff of 8 employees and ensured operational compliance</li>
-                        <li>Implemented process improvements that increased operational efficiency by 20%</li>
-                        <li>Handled high-pressure situations and customer escalations professionally</li>
+                        <li>Managed daily operations, inventory, and customer service.</li>
+                        <li>Supervised staff and ensured operational efficiency.</li>
                     </ul>
                 </div>
             </div>
 
             <div class="section">
                 <h2>Education</h2>
-                <div class="education-item">
+                <div class="experience-item">
                     <h3>Diploma in Horticulture</h3>
                     <div class="company">Imperial College of Trades, Adelaide, South Australia</div>
-                    <div class="duration">Completed</div>
                 </div>
-                <div class="education-item">
+                <div class="experience-item">
                     <h3>Intermediate (12th Class)</h3>
                     <div class="company">Nalanda Junior College, Guntur</div>
-                    <div class="duration">2000 - 2002</div>
                 </div>
-                <div class="education-item">
-                    <h3>Secondary School (10th Class)</h3>
-                    <div class="company">Ramakrishna Vidya Peetam, Kanigiri</div>
-                    <div class="duration">Completed 2000</div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>Languages</h2>
-                <div class="languages">
-                    <div class="language-item">English - Fluent</div>
-                    <div class="language-item">Telugu - Native</div>
-                    <div class="language-item">Hindi - Conversational</div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h2>Additional Information</h2>
-                <ul>
-                    <li><strong>AI-Enhanced Productivity:</strong> Actively uses Gemini CLI, Kiro CLI, and Microsoft Copilot for accelerated development and intelligent problem-solving</li>
-                    <li><strong>Modern Development Approach:</strong> Integrates cutting-edge AI tools into DevOps workflows for enhanced efficiency and code quality</li>
-                    <li><strong>Rapid Learning & Adaptation:</strong> Quick to master new tools and technologies based on project requirements, with proven ability to upgrade skillset continuously</li>
-                    <li><strong>Continuous Skill Development:</strong> Stays current with emerging technologies and adapts toolset based on industry evolution and market demands</li>
-                    <li><strong>Portfolio:</strong> Live deployment at prash.shop demonstrating real-world technical capabilities with AI-assisted development</li>
-                </ul>
             </div>
         </div>
     </div>
-
-    <!-- PDF Buttons -->
-    <button class="download-btn" onclick="previewPDF()" style="right: 220px;">👁️ Preview PDF</button>
-    <button class="download-btn" onclick="downloadPDF()">📄 Download PDF</button>
-
-    <script>
-        function previewPDF() {
-            const element = document.getElementById('resume-content');
-            
-            // Hide buttons during generation
-            const buttons = document.querySelectorAll('.download-btn');
-            buttons.forEach(btn => btn.style.display = 'none');
-            
-            const opt = {
-                margin: 0.5,
-                image: { type: 'jpeg', quality: 1.0 },
-                html2canvas: { 
-                    scale: 3,
-                    useCORS: true,
-                    allowTaint: false,
-                    backgroundColor: '#ffffff',
-                    height: element.scrollHeight,
-                    width: element.scrollWidth,
-                    scrollX: 0,
-                    scrollY: 0,
-                    letterRendering: true,
-                    logging: false,
-                    imageTimeout: 0
-                }
-            };
-            
-            console.log('Generating PDF preview...');
-            
-            html2canvas(element, opt.html2canvas).then(canvas => {
-                const imgData = canvas.toDataURL('image/jpeg', 0.98);
-                const { jsPDF } = window.jspdf;
-                const pdf = new jsPDF('p', 'mm', 'a4');
-                
-                const imgWidth = 210;
-                const pageHeight = 295;
-                const imgHeight = (canvas.height * imgWidth) / canvas.width;
-                let heightLeft = imgHeight;
-                let position = 0;
-                
-                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
-                
-                while (heightLeft >= 0) {
-                    position = heightLeft - imgHeight;
-                    pdf.addPage();
-                    pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-                    heightLeft -= pageHeight;
-                }
-                
-                // Open PDF in new tab for preview
-                const pdfBlob = pdf.output('blob');
-                const pdfUrl = URL.createObjectURL(pdfBlob);
-                window.open(pdfUrl, '_blank');
-                
-                buttons.forEach(btn => btn.style.display = 'block');
-            }).catch(error => {
-                console.error('PDF preview failed:', error);
-                buttons.forEach(btn => btn.style.display = 'block');
-                alert('PDF preview failed. Please try using browser Print > Save as PDF');
-            });
-        }
-
-        function downloadPDF() {
-            const element = document.getElementById('resume-content');
-            
-            // Remove fixed elements that might cause issues
-            const btn = document.querySelector('.download-btn');
-            btn.style.display = 'none';
-            
-            const opt = {
-                margin: 0.5,
-                filename: 'Venkata_Narayana_Reddy_DevOps_Resume.pdf',
-                image: { type: 'jpeg', quality: 1.0 },
-                html2canvas: { 
-                    scale: 3,
-                    useCORS: true,
-                    allowTaint: false,
-                    backgroundColor: '#ffffff',
-                    height: element.scrollHeight,
-                    width: element.scrollWidth,
-                    scrollX: 0,
-                    scrollY: 0,
-                    letterRendering: true,
-                    logging: false,
-                    imageTimeout: 0
-                },
-                jsPDF: { 
-                    unit: 'in', 
-                    format: 'a4', 
-                    orientation: 'portrait'
-                },
-                pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-            };
-            
-            // Show loading in console
-            console.log('Generating PDF...');
-            
-            html2canvas(element, opt.html2canvas).then(canvas => {
-                const imgData = canvas.toDataURL('image/jpeg', 0.98);
-                const { jsPDF } = window.jspdf;
-                const pdf = new jsPDF('p', 'mm', 'a4');
-                
-                const imgWidth = 210;
-                const pageHeight = 295;
-                const imgHeight = (canvas.height * imgWidth) / canvas.width;
-                let heightLeft = imgHeight;
-                let position = 0;
-                
-                pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-                heightLeft -= pageHeight;
-                
-                while (heightLeft >= 0) {
-                    position = heightLeft - imgHeight;
-                    pdf.addPage();
-                    pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-                    heightLeft -= pageHeight;
-                }
-                
-                pdf.save('Venkata_Narayana_Reddy_DevOps_Resume.pdf');
-                btn.style.display = 'block';
-            }).catch(error => {
-                console.error('PDF generation failed:', error);
-                btn.style.display = 'block';
-                alert('PDF generation failed. Please try using browser Print > Save as PDF');
-            });
-        }
-    </script>
 </body>
 </html>
