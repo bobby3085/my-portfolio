@@ -143,12 +143,19 @@
 
         .profile-section { 
             display: flex; 
-            flex-direction: column;
+            flex-direction: row;
             align-items: center; 
             justify-content: center; 
-            gap: 30px; 
+            text-align: left;
+            gap: 50px; 
             position: relative;
             z-index: 1;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .profile-image { 
@@ -773,7 +780,7 @@
                     <h2>🌩️ Real-World GCP Experience</h2>
                     <p style="margin-bottom: 25px; font-size: 1.1em; color: #555;">Live production deployment using imperative commands - showcasing hands-on cloud expertise beyond YAML configurations.</p>
                     
-                    <div class="project" style="border-left: 4px solid #4285f4; background: #f8f9ff;">
+                    <div class="project" style="border-left: 4px solid #4285f4;">
                         <div class="project-header">
                             <div>
                                 <h3>🚀 GCP Production Pipeline - Command-Line Mastery</h3>
