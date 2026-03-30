@@ -1,0 +1,16 @@
+[project]
+name = "portfolio-website"
+version = "0.1.0"
+description = "AI-Augmented Systems Builder Portfolio"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "Flask==2.3.3",
+    "requests==2.31.0",
+    "beautifulsoup4==4.12.2",
+    "pytest==7.4.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
